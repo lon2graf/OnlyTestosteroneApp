@@ -35,27 +35,4 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildButton(BuildContext context, String text, String routeName) {
-    return SizedBox(
-      width: 220,
-      height: 50,
-      child: ElevatedButton(
-        onPressed: () {
-          try {
-            Navigator.pushNamed(context, routeName);
-          } catch (e) {
-            print('Ошибка перехода: $e');
-          }
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.black87,
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
-        child: Text(text, style: const TextStyle(fontSize: 18)),
-      ),
-    );
-  }
 }

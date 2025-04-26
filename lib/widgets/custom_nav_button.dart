@@ -2,15 +2,19 @@
 //предназначена для навигации между экранами
 
 import 'package:flutter/material.dart';
+import 'package:only_testosterone/main.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomNavButton extends StatelessWidget {
   final String text;
   final String routeName;
+  //final VoidCallback? onPressed;
 
   const CustomNavButton({
     super.key,
     required this.text,
     required this.routeName,
+    //this.onPressed,
   });
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class CustomNavButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           try {
-            Navigator.pushNamed(context, routeName);
+            context.push(routeName);
           } catch (e) {
             print('Ошибка перехода: $e');
           }
@@ -29,14 +33,8 @@ class CustomNavButton extends StatelessWidget {
           backgroundColor: Colors.black87,
           foregroundColor: Colors.white,
         ),
-        child: Text(
-          text,
-          style: const TextStyle(fontSize: 18),
-        ),
+        child: Text(text, style: const TextStyle(fontSize: 18)),
       ),
     );
   }
 }
-
-
-

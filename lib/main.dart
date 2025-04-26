@@ -6,29 +6,28 @@ import 'package:only_testosterone/screens/main_screen.dart';
 import 'package:only_testosterone/screens/login_screen.dart';
 import 'package:only_testosterone/screens/register_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:go_router/go_router.dart';
 
 void main() async {
-  SupabaseConfig.init();
   await dotenv.load(fileName: ".env");
-  UserModel user = new UserModel(
-    name: 'Рес',
-    login: 'propanButan',
-    password: '123',
+  SupabaseConfig.init();
+
+  final GoRouter appRouter = GoRouter(
+    initialLocation: '/',
+    routes: [
+      GoRoute(path: '/', builder: (context, state) => MainScreen()),
+      GoRoute(path: '/login', builder: (context, state) => LoginScreen()),
+      GoRoute(path: '/register', builder: (context, state) => RegistrationScreen()),
+    ],
   );
-
-
 
   runApp(
-    MaterialApp(
+    MaterialApp.router(
       title: 'OnlyTest',
       theme: ThemeData(primarySwatch: Colors.blueGrey),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const MainScreen(),
-        '/login': (context) => const LoginScreen(),
-        '/register': (context) => RegistrationScreen(),
-        // '/knowledge_base': (context) => KnowledgeBaseScreen(),
-      },
+      routerConfig: appRouter, // передаем сюда appRouter
     ),
   );
+
+
 }

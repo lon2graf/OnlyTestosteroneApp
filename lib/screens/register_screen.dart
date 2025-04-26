@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:only_testosterone/widgets/custom_text_field.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -12,7 +13,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final _loginController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-
   final _nameController = TextEditingController();
   final _weightController = TextEditingController();
 
@@ -51,19 +51,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextField(
-            controller: _loginController,
-            decoration: InputDecoration(labelText: 'Логин'),
-          ),
-          TextField(
+          CustomTextField(hintText: 'Логин', controller: _loginController),
+          const SizedBox(height: 16),
+          CustomTextField(
+            hintText: 'Пароль',
             controller: _passwordController,
-            decoration: InputDecoration(labelText: 'Пароль'),
             obscureText: true,
+            keyboardType: TextInputType.visiblePassword,
           ),
-          TextField(
+          const SizedBox(height: 16),
+          CustomTextField(
+            hintText: 'Подтверждение пароля',
             controller: _confirmPasswordController,
-            decoration: InputDecoration(labelText: 'Подтверждение пароля'),
             obscureText: true,
+            keyboardType: TextInputType.visiblePassword,
           ),
         ],
       ),

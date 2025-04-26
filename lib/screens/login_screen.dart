@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // Импортируем для работы с SVG
+import 'package:only_testosterone/widgets/custom_nav_button.dart';
+import 'package:only_testosterone/widgets/custom_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController loginController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -33,14 +38,23 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 40),
 
-              // Поля для ввода логина и пароля
-              _buildTextField('Логин'),
+              // Полt для ввода логина
+              CustomTextField(hintText: "Логин", controller: loginController),
+
               const SizedBox(height: 16),
-              _buildTextField('Пароль', obscureText: true), // Обеспечиваем скрытие пароля
+
+              //поле для ввода пароля
+              CustomTextField(
+                hintText: "Пароль",
+                controller: passwordController,
+                obscureText: true,
+                keyboardType: TextInputType.visiblePassword,
+              ), // Обеспечиваем скрытие пароля
+
               const SizedBox(height: 40),
 
               // Кнопка для авторизации
-              _buildButton(context, 'Войти', '/home'), // Заменить на нужный путь
+              CustomNavButton(text: 'Войти', routeName: '/home')
             ],
           ),
         ),
@@ -54,34 +68,8 @@ class LoginScreen extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-      ),
-    );
-  }
-
-  // Метод для создания кнопки
-  Widget _buildButton(BuildContext context, String text, String routeName) {
-    return SizedBox(
-      width: 220,
-      height: 50,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, routeName);
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.black87,
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
-        child: Text(
-          text,
-          style: const TextStyle(fontSize: 18),
-        ),
       ),
     );
   }

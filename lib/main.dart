@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:only_testosterone/models/user_model.dart';
 import 'package:only_testosterone/supabase/supabase_config.dart';
 import 'package:only_testosterone/services/user_services.dart';
-import 'package:only_testosterone/screens/main_screen.dart';
 import 'package:only_testosterone/screens/login_screen.dart';
 import 'package:only_testosterone/screens/register_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -15,7 +14,7 @@ void main() async {
   final GoRouter appRouter = GoRouter(
     initialLocation: '/',
     routes: [
-      GoRoute(path: '/', builder: (context, state) => MainScreen()),
+      GoRoute(path: '/', builder: (context, state) => LoginScreen()),
       GoRoute(path: '/login', builder: (context, state) => LoginScreen()),
       GoRoute(path: '/register', builder: (context, state) => RegistrationScreen()),
     ],

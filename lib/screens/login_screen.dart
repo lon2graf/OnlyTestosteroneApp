@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // Импортируем для работы с SVG
 import 'package:only_testosterone/widgets/custom_nav_button.dart';
 import 'package:only_testosterone/widgets/custom_text_field.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -50,11 +51,16 @@ class LoginScreen extends StatelessWidget {
                 obscureText: true,
                 keyboardType: TextInputType.visiblePassword,
               ), // Обеспечиваем скрытие пароля
-
               const SizedBox(height: 40),
 
               // Кнопка для авторизации
-              CustomNavButton(text: 'Войти', routeName: '/home')
+              CustomNavButton(text: 'Войти', routeName: '/home'),
+              TextButton(
+                onPressed: () {
+                  context.push('/register');
+                },
+                child: Text('Нет аккаунта? Зарегайся!'),
+              ),
             ],
           ),
         ),

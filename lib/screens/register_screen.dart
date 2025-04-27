@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:only_testosterone/widgets/custom_text_field.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:only_testosterone/widgets/custom_text_field.dart'; // не забудь поправить путь!
 
 class RegistrationScreen extends StatefulWidget {
+  const RegistrationScreen({Key? key}) : super(key: key);
+
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
@@ -19,24 +22,39 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String? _selectedLevel;
 
   @override
+  void dispose() {
+    _loginController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    _nameController.dispose();
+    _weightController.dispose();
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Регистрация")),
+      appBar: AppBar(title: const Text("Регистрация")),
       body: SafeArea(
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: (index) {
-            setState(() {
-              _currentStep = index;
-            });
-          },
+        child: Column(
           children: [
-            // Этап 1: Ввод логина и пароля
-            _buildStep1(),
-            // Этап 2: Ввод имени и веса
-            _buildStep2(),
-            // Этап 3: Выбор уровня подготовки
-            _buildStep3(),
+            SvgPicture.asset(
+              'assets/logo.svg',
+              height: 200,
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: PageView(
+                controller: _pageController,
+                physics: const NeverScrollableScrollPhysics(), // отключаем свайпы вручную
+                children: [
+                  _buildStep1(),
+                  _buildStep2(),
+                  _buildStep3(),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -44,47 +62,49 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  // Этап 1: Ввод логина, пароля и подтверждения пароля
   Widget _buildStep1() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CustomTextField(hintText: 'Логин', controller: _loginController),
+          CustomTextField(
+            hintText: 'Логин',
+            controller: _loginController,
+            keyboardType: TextInputType.text,
+          ),
           const SizedBox(height: 16),
           CustomTextField(
             hintText: 'Пароль',
             controller: _passwordController,
             obscureText: true,
-            keyboardType: TextInputType.visiblePassword,
           ),
           const SizedBox(height: 16),
           CustomTextField(
             hintText: 'Подтверждение пароля',
             controller: _confirmPasswordController,
             obscureText: true,
-            keyboardType: TextInputType.visiblePassword,
           ),
         ],
       ),
     );
   }
 
-  // Этап 2: Ввод имени и веса
   Widget _buildStep2() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextField(
+          CustomTextField(
+            hintText: 'Имя',
             controller: _nameController,
-            decoration: InputDecoration(labelText: 'Имя'),
+            keyboardType: TextInputType.name,
           ),
-          TextField(
+          const SizedBox(height: 16),
+          CustomTextField(
+            hintText: 'Вес (кг)',
             controller: _weightController,
-            decoration: InputDecoration(labelText: 'Вес'),
             keyboardType: TextInputType.number,
           ),
         ],
@@ -92,7 +112,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  // Этап 3: Выбор уровня подготовки
   Widget _buildStep3() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -101,72 +120,111 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         children: [
           DropdownButton<String>(
             value: _selectedLevel,
-            hint: Text("Выберите уровень подготовки"),
+            hint: const Text("Выберите уровень подготовки"),
             onChanged: (value) {
               setState(() {
                 _selectedLevel = value;
               });
             },
-            items:
-                ["Новичок", "Средний", "Продвинутый"]
-                    .map(
-                      (level) =>
-                          DropdownMenuItem(child: Text(level), value: level),
-                    )
-                    .toList(),
+            items: ["Новичок", "Средний", "Продвинутый"]
+                .map(
+                  (level) => DropdownMenuItem(
+                value: level,
+                child: Text(level),
+              ),
+            )
+                .toList(),
           ),
         ],
       ),
     );
   }
 
-  // Навигация по этапам
   Widget _buildNavigationBar() {
-    return BottomNavigationBar(
-      currentIndex: _currentStep,
-      onTap: (index) {
-        if (index == 2 && _validateStep()) {
-          // Все этапы пройдены, можно завершить регистрацию
-          _completeRegistration();
-        } else {
-          _pageController.jumpToPage(index);
-        }
-      },
-      items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.navigate_next),
-          label: "Этап 1",
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.navigate_next),
-          label: "Этап 2",
-        ),
-        BottomNavigationBarItem(icon: Icon(Icons.check), label: "Завершить"),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          if (_currentStep > 0)
+            ElevatedButton(
+              onPressed: () {
+                _pageController.previousPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.ease);
+                setState(() {
+                  _currentStep--;
+                });
+              },
+              child: const Text("Назад"),
+            ),
+          ElevatedButton(
+            onPressed: () {
+              if (_validateStep()) {
+                if (_currentStep < 2) {
+                  _pageController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.ease);
+                  setState(() {
+                    _currentStep++;
+                  });
+                } else {
+                  _completeRegistration();
+                }
+              }
+            },
+            child: Text(_currentStep < 2 ? "Далее" : "Завершить"),
+          ),
+        ],
+      ),
     );
   }
 
-  // Проверка этапов (например, если все поля заполнены)
   bool _validateStep() {
     if (_currentStep == 0) {
-      return _loginController.text.isNotEmpty &&
-          _passwordController.text.isNotEmpty &&
-          _confirmPasswordController.text.isNotEmpty &&
-          _passwordController.text == _confirmPasswordController.text;
-    }
-    if (_currentStep == 1) {
-      return _nameController.text.isNotEmpty &&
-          _weightController.text.isNotEmpty;
-    }
-    if (_currentStep == 2) {
-      return _selectedLevel != null;
+      if (_loginController.text.isEmpty ||
+          _passwordController.text.isEmpty ||
+          _confirmPasswordController.text.isEmpty) {
+        _showError("Пожалуйста, заполните все поля.");
+        return false;
+      }
+      if (_passwordController.text != _confirmPasswordController.text) {
+        _showError("Пароли не совпадают.");
+        return false;
+      }
+    } else if (_currentStep == 1) {
+      if (_nameController.text.isEmpty || _weightController.text.isEmpty) {
+        _showError("Пожалуйста, введите имя и вес.");
+        return false;
+      }
+      if (double.tryParse(_weightController.text) == null) {
+        _showError("Вес должен быть числом.");
+        return false;
+      }
+    } else if (_currentStep == 2) {
+      if (_selectedLevel == null) {
+        _showError("Пожалуйста, выберите уровень подготовки.");
+        return false;
+      }
     }
     return true;
   }
 
-  // Завершение регистрации
+  void _showError(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
+  }
+
   void _completeRegistration() {
-    // Здесь можно отправить данные на сервер или обработать их по-другому
+    // Здесь логика завершения регистрации
     print("Регистрация завершена!");
+    print("Логин: ${_loginController.text}");
+    print("Имя: ${_nameController.text}");
+    print("Вес: ${_weightController.text}");
+    print("Уровень: $_selectedLevel");
+
+    // Переход на экран успеха или главную страницу, например
+    Navigator.of(context).pushReplacementNamed('/success');
   }
 }

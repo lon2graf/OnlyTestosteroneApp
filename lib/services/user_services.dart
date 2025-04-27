@@ -59,5 +59,29 @@ class UserServices {
       return false;
     }
 
+
+
+  }
+
+  static Future<bool> isLoginTaker(String login) async{
+    final _supClient = Supabase.instance.client;
+    try{
+      final response =
+      await _supClient
+          .from('Users')
+          .select()
+          .eq('login', login)
+          .maybeSingle();
+
+      if (response != null)
+        return true;
+      else
+        return false;
+
+    }
+    catch(e){
+      print("Ошибка при логине >> $e");
+      return false;
+    }
   }
 }

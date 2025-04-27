@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:only_testosterone/services/user_services.dart';
 import 'package:only_testosterone/widgets/custom_text_field.dart'; // не забудь поправить путь!
 
 class RegistrationScreen extends StatefulWidget {
@@ -192,6 +193,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         _showError("Пароли не совпадают.");
         return false;
       }
+
     } else if (_currentStep == 1) {
       if (_nameController.text.isEmpty || _weightController.text.isEmpty) {
         _showError("Пожалуйста, введите имя и вес.");

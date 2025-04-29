@@ -21,6 +21,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final _weightController = TextEditingController();
 
   String? _selectedLevel;
+  String? _selectedGender;
 
   @override
   void dispose() {
@@ -108,6 +109,36 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             controller: _weightController,
             keyboardType: TextInputType.number,
           ),
+          const SizedBox(height: 16),
+          const Text(
+            'Пол',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          // Выбор пола
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ChoiceChip(
+                label: const Text('Мужской'),
+                selected: _selectedGender == 'Мужской',
+                onSelected: (selected) {
+                  setState(() {
+                    _selectedGender = 'Мужской';
+                  });
+                },
+              ),
+              const SizedBox(width: 10),
+              ChoiceChip(
+                label: const Text('Женский'),
+                selected: _selectedGender == 'Женский',
+                onSelected: (selected) {
+                  setState(() {
+                    _selectedGender = 'Женский';
+                  });
+                },
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -151,22 +182,36 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ElevatedButton(
               onPressed: () {
                 _pageController.previousPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.ease);
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.ease,
+                );
                 setState(() {
                   _currentStep--;
                 });
               },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(140, 45), // Умеренный размер кнопки
+                backgroundColor: Colors.black, // Чёрный фон
+                foregroundColor: Colors.white, // Белый текст
+                textStyle: const TextStyle(
+                  fontSize: 16, // Чуть меньше размер текста
+                  fontWeight: FontWeight.w600,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10), // Скругление углов
+                ),
+              ),
               child: const Text("Назад"),
             ),
           ElevatedButton(
-            onPressed : () async {
+            onPressed: () async {
               bool isValidStep = await _validateStep();
               if (isValidStep) {
                 if (_currentStep < 2) {
                   _pageController.nextPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.ease);
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.ease,
+                  );
                   setState(() {
                     _currentStep++;
                   });
@@ -175,6 +220,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 }
               }
             },
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size(140, 45), // Умеренный размер кнопки
+              backgroundColor: Colors.black, // Чёрный фон
+              foregroundColor: Colors.white, // Белый текст
+              textStyle: const TextStyle(
+                fontSize: 16, // Чуть меньше размер текста
+                fontWeight: FontWeight.w600,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10), // Скругление углов
+              ),
+            ),
             child: Text(_currentStep < 2 ? "Далее" : "Завершить"),
           ),
         ],
@@ -206,6 +263,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       }
       if (double.tryParse(_weightController.text) == null) {
         _showError("Вес должен быть числом.");
+        return false;
+      }
+      if (_selectedGender == null) {
+        _showError("Пожалуйста, выберите пол.");
         return false;
       }
     } else if (_currentStep == 2) {

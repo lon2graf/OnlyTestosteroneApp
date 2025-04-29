@@ -107,4 +107,45 @@ class UserServices {
       return false;
     }
   }
+
+  static int determineTrainingLevel({
+    required String gender,
+    required double weight,
+    required double squatMax,
+    required double benchPressMax,
+    required double deadliftMax,
+  }) {
+    if (gender == 'м') {
+      if ((squatMax >= 0.5 * weight && squatMax <= 1 * weight) ||
+          (benchPressMax >= 0.4 * weight && benchPressMax <= 0.7 * weight) ||
+          (deadliftMax >= 0.5 * weight && deadliftMax <= 1 * weight)) {
+        return 0; // Новичок
+      } else if ((squatMax >= 1 * weight && squatMax <= 1.5 * weight) ||
+          (benchPressMax >= 0.7 * weight && benchPressMax <= 1 * weight) ||
+          (deadliftMax >= 1 * weight && deadliftMax <= 1.5 * weight)) {
+        return 1; // Средний
+      } else if ((squatMax > 1.5 * weight) ||
+          (benchPressMax >= 1 * weight) ||
+          (deadliftMax >= 1.5 * weight)) {
+        return 2; // Продвинутый
+      }
+    } else if (gender == 'ж') {
+      if ((squatMax >= 0.4 * weight && squatMax <= 0.8 * weight) ||
+          (benchPressMax >= 0.3 * weight && benchPressMax <= 0.6 * weight) ||
+          (deadliftMax >= 0.4 * weight && deadliftMax <= 0.8 * weight)) {
+        return 0; // Новичок
+      } else if ((squatMax >= 0.8 * weight && squatMax <= 1.2 * weight) ||
+          (benchPressMax >= 0.6 * weight && benchPressMax <= 0.8 * weight) ||
+          (deadliftMax >= 0.8 * weight && deadliftMax <= 1.2 * weight)) {
+        return 1; // Средний
+      } else if ((squatMax > 1.2 * weight) ||
+          (benchPressMax >= 0.8 * weight) ||
+          (deadliftMax >= 1.2 * weight)) {
+        return 2; // Продвинутый
+      }
+    }
+
+    return 0; // По умолчанию считаем новичком
+  }
+}
 }

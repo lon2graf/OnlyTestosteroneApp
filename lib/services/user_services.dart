@@ -37,7 +37,7 @@ class UserServices {
   //проверяем есть ли такой user с логином и паролем
   //если есть то true
   //если нет то false
-  static Future<bool> loginUser(UserModel user) async {
+  static Future<bool> loginUserWithModel(UserModel user) async {
     final _supClient = Supabase.instance.client;
     try{
       final response =
@@ -58,12 +58,9 @@ class UserServices {
       print("Ошибка при логине >> $e");
       return false;
     }
-
-
-
   }
 
-  static Future<bool> isLoginTaker(String login) async{
+  static Future<bool> loginUserWithString (String login, String password) async {
     final _supClient = Supabase.instance.client;
     try{
       final response =
@@ -71,6 +68,7 @@ class UserServices {
           .from('Users')
           .select()
           .eq('login', login)
+          .eq('password', password)
           .maybeSingle();
 
       if (response != null)
@@ -78,6 +76,31 @@ class UserServices {
       else
         return false;
 
+    }
+    catch(e){
+      print("Ошибка при логине >> $e");
+      return false;
+    }
+  }
+
+  static Future<bool> isLoginTaker(String login) async{
+    final _supClient = Supabase.instance.client;
+    try {
+      final response =
+      await _supClient
+          .from('Users')
+          .select()
+          .eq('login', login)
+          .maybeSingle();
+
+      if (response != null) {
+        print('стояять');
+        return true;
+      }
+      else {
+        print('проходи');
+        return false;
+      }
     }
     catch(e){
       print("Ошибка при логине >> $e");

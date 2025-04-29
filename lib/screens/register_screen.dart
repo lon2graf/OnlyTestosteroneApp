@@ -160,8 +160,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               child: const Text("Назад"),
             ),
           ElevatedButton(
-            onPressed: () {
-              if (_validateStep()) {
+            onPressed : () async {
+              bool isValidStep = await _validateStep();
+              if (isValidStep) {
                 if (_currentStep < 2) {
                   _pageController.nextPage(
                       duration: const Duration(milliseconds: 300),
@@ -181,7 +182,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  bool _validateStep() {
+  Future<bool> _validateStep() async {
     if (_currentStep == 0) {
       if (_loginController.text.isEmpty ||
           _passwordController.text.isEmpty ||
@@ -191,6 +192,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       }
       if (_passwordController.text != _confirmPasswordController.text) {
         _showError("Пароли не совпадают.");
+        return false;
+      }
+      if (await UserServices.isLoginTaker(_loginController.text)){
+        _showError("Такой логин уже занят");
         return false;
       }
 

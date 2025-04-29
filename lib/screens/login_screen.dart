@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // Импортируем для работы с SVG
+import 'package:only_testosterone/services/user_services.dart';
 import 'package:only_testosterone/widgets/custom_nav_button.dart';
 import 'package:only_testosterone/widgets/custom_text_field.dart';
 import 'package:go_router/go_router.dart';
@@ -51,31 +52,54 @@ class LoginScreen extends StatelessWidget {
                 obscureText: true,
                 keyboardType: TextInputType.visiblePassword,
               ), // Обеспечиваем скрытие пароля
-              const SizedBox(height: 40),
+              const SizedBox(height: 10),
 
               // Кнопка для авторизации
-              CustomNavButton(text: 'Войти', routeName: '/home'),
+              //CustomNavButton(text: 'Войти', routeName: '/home'),
+              //TextButton(
+              //onPressed: () {
+              //context.push('/register');
+              //},
+              //child: Text('Нет аккаунта? Зарегайся!'),
+              //),
+
               TextButton(
                 onPressed: () {
                   context.push('/register');
                 },
                 child: Text('Нет аккаунта? Зарегайся!'),
               ),
+              const SizedBox(height: 60),
+              ElevatedButton(
+                onPressed: () async {
+                  bool canLogin = await UserServices.loginUserWithString(
+                    loginController.text,
+                    passwordController.text,
+                  );
+                  if (canLogin) {
+                    context.push('/home');
+                  } else {
+                    print('свабодин');
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 60), // Кнопка на всю ширину и 60 высоты
+                  backgroundColor: Colors.black, // Чёрный фон кнопки
+                  foregroundColor: Colors.white, // Белый цвет текста
+                  textStyle: const TextStyle(
+                    fontSize: 20, // Крупный текст
+                    fontWeight: FontWeight.bold,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12), // Скругление краёв кнопки
+                  ),
+                ),
+                child: const Text("Войти"),
+              ),
+
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  // Метод для создания полей ввода
-  Widget _buildTextField(String hintText, {bool obscureText = false}) {
-    return TextField(
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        hintText: hintText,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       ),
     );
   }

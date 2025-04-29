@@ -148,4 +148,4 @@ class UserServices {
     return 0; // По умолчанию считаем новичком
   }
 }
-}
+

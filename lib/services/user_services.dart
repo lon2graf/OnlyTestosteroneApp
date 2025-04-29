@@ -109,13 +109,13 @@ class UserServices {
   }
 
   static int determineTrainingLevel({
-    required String gender,
+    required String? gender,
     required double weight,
     required double squatMax,
     required double benchPressMax,
     required double deadliftMax,
   }) {
-    if (gender == 'м') {
+    if (gender == 'М') {
       if ((squatMax >= 0.5 * weight && squatMax <= 1 * weight) ||
           (benchPressMax >= 0.4 * weight && benchPressMax <= 0.7 * weight) ||
           (deadliftMax >= 0.5 * weight && deadliftMax <= 1 * weight)) {
@@ -129,7 +129,7 @@ class UserServices {
           (deadliftMax >= 1.5 * weight)) {
         return 2; // Продвинутый
       }
-    } else if (gender == 'ж') {
+    } else if (gender == 'Ж') {
       if ((squatMax >= 0.4 * weight && squatMax <= 0.8 * weight) ||
           (benchPressMax >= 0.3 * weight && benchPressMax <= 0.6 * weight) ||
           (deadliftMax >= 0.4 * weight && deadliftMax <= 0.8 * weight)) {

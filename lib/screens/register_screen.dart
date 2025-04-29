@@ -19,9 +19,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final _confirmPasswordController = TextEditingController();
   final _nameController = TextEditingController();
   final _weightController = TextEditingController();
-
-  String? _selectedLevel;
-  String? _selectedGender;
+  final TextEditingController _squatController = TextEditingController();
+  final TextEditingController _benchController = TextEditingController();
+  final TextEditingController _deadliftController = TextEditingController();
+  int _calculatedLevel = 0;
+  String _selectedGender = 'М';
 
   @override
   void dispose() {
@@ -41,20 +43,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            SvgPicture.asset(
-              'assets/logo.svg',
-              height: 200,
-            ),
+            SvgPicture.asset('assets/logo.svg', height: 200),
             const SizedBox(height: 20),
             Expanded(
               child: PageView(
                 controller: _pageController,
-                physics: const NeverScrollableScrollPhysics(), // отключаем свайпы вручную
-                children: [
-                  _buildStep1(),
-                  _buildStep2(),
-                  _buildStep3(),
-                ],
+                physics:
+                    const NeverScrollableScrollPhysics(), // отключаем свайпы вручную
+                children: [_buildStep1(), _buildStep2(), _buildStep3()],
               ),
             ),
           ],
@@ -119,21 +115,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ChoiceChip(
-                label: const Text('Мужской'),
-                selected: _selectedGender == 'Мужской',
+                label: const Text('М'),
+                selected: _selectedGender == 'М',
                 onSelected: (selected) {
                   setState(() {
-                    _selectedGender = 'Мужской';
+                    print(_selectedGender);
+                    _selectedGender = 'М';
                   });
                 },
               ),
               const SizedBox(width: 10),
               ChoiceChip(
-                label: const Text('Женский'),
-                selected: _selectedGender == 'Женский',
+                label: const Text('Ж'),
+                selected: _selectedGender == 'Ж',
                 onSelected: (selected) {
                   setState(() {
-                    _selectedGender = 'Женский';
+                    print(_selectedGender);
+                    _selectedGender = 'Ж';
                   });
                 },
               ),
@@ -150,22 +148,32 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          DropdownButton<String>(
-            value: _selectedLevel,
-            hint: const Text("Выберите уровень подготовки"),
-            onChanged: (value) {
-              setState(() {
-                _selectedLevel = value;
-              });
-            },
-            items: ["Новичок", "Средний", "Продвинутый"]
-                .map(
-                  (level) => DropdownMenuItem(
-                value: level,
-                child: Text(level),
-              ),
-            )
-                .toList(),
+          CustomTextField(
+            hintText: '1ПМ в приседе (кг)',
+            controller: _squatController,
+            keyboardType: TextInputType.number,
+            onChanged: (_) => _updateTrainingLevel(),
+          ),
+          const SizedBox(height: 16),
+          CustomTextField(
+            hintText: '1ПМ в жиме лёжа (кг)',
+            controller: _benchController,
+            keyboardType: TextInputType.number,
+            onChanged: (_) => _updateTrainingLevel(),
+          ),
+          const SizedBox(height: 16),
+          CustomTextField(
+            hintText: '1ПМ в становой тяге (кг)',
+            controller: _deadliftController,
+            keyboardType: TextInputType.number,
+            onChanged: (_) => _updateTrainingLevel(),
+          ),
+          const SizedBox(height: 24),
+          Text(
+            _calculatedLevel != null
+                ? "Ваш уровень подготовки: $_calculatedLevel"
+                : "Введите данные, чтобы определить уровень подготовки",
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
         ],
       ),
@@ -251,11 +259,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         _showError("Пароли не совпадают.");
         return false;
       }
-      if (await UserServices.isLoginTaker(_loginController.text)){
+      if (await UserServices.isLoginTaker(_loginController.text)) {
         _showError("Такой логин уже занят");
         return false;
       }
-
     } else if (_currentStep == 1) {
       if (_nameController.text.isEmpty || _weightController.text.isEmpty) {
         _showError("Пожалуйста, введите имя и вес.");
@@ -270,8 +277,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         return false;
       }
     } else if (_currentStep == 2) {
-      if (_selectedLevel == null) {
-        _showError("Пожалуйста, выберите уровень подготовки.");
+      if (_calculatedLevel == null) {
+        _showError("Пожалуйста, заполните все поля.");
         return false;
       }
     }
@@ -279,9 +286,28 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   void _showError(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  void _updateTrainingLevel() {
+    final weight = double.tryParse(_weightController.text) ?? 0;
+    final squatMax = double.tryParse(_squatController.text) ?? 0;
+    final benchPressMax = double.tryParse(_benchController.text) ?? 0;
+    final deadliftMax = double.tryParse(_deadliftController.text) ?? 0;
+
+    final level = UserServices.determineTrainingLevel(
+      gender: _selectedGender,
+      weight: weight,
+      squatMax: squatMax,
+      benchPressMax: benchPressMax,
+      deadliftMax: deadliftMax,
     );
+
+    setState(() {
+      _calculatedLevel = level;
+    });
   }
 
   void _completeRegistration() {
@@ -290,9 +316,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     print("Логин: ${_loginController.text}");
     print("Имя: ${_nameController.text}");
     print("Вес: ${_weightController.text}");
-    print("Уровень: $_selectedLevel");
-
+    print("Уровень: $_calculatedLevel");
+    print("Пол: $_selectedGender");
     // Переход на экран успеха или главную страницу, например
-    Navigator.of(context).pushReplacementNamed('/success');
+    //Navigator.of(context).pushReplacementNamed('/success');
   }
 }

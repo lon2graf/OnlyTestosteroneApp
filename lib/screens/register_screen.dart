@@ -171,7 +171,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           const SizedBox(height: 24),
           Text(
             _calculatedLevel != null
-                ? "Ваш уровень подготовки: $_calculatedLevel"
+                ? "Ваш уровень подготовки: ${_getLevelText(_calculatedLevel!)}"
                 : "Введите данные, чтобы определить уровень подготовки",
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
@@ -291,6 +291,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     ).showSnackBar(SnackBar(content: Text(message)));
   }
 
+  String _getLevelText(int level) {
+    switch (level) {
+      case 0:
+        return 'Начальный уровень подготовки';
+      case 1:
+        return 'Средний уровень подготовки';
+      case 2:
+        return 'Продвинутый уровень подготовки';
+      default:
+        return 'Неизвестный уровень';
+    }
+  }
   void _updateTrainingLevel() {
     final weight = double.tryParse(_weightController.text) ?? 0;
     final squatMax = double.tryParse(_squatController.text) ?? 0;

@@ -1,0 +1,82 @@
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _screens = [
+    //здеся можно экраны писать отдельные(осталось их тока реализовать)
+    Center(child: Text('Личный кабинет')),
+    Center(child: Text('Новая программа')),
+    Center(child: Text('Мои программы')),
+    Center(child: Text('Калькулятор БЖУ')),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  void _openDrawerItem(String title) {
+    Navigator.pop(context); // закрываем Drawer
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$title (в разработке)')));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('OnlyTestosterone'),
+        centerTitle: true,
+      ),
+      //Drawer - боковая панель
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.black),
+              child: Text('Меню', style: TextStyle(color: Colors.white, fontSize: 24)),
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Настройки'),
+              onTap: () => _openDrawerItem('Настройки'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.menu_book),
+              title: const Text('База знаний'),
+              onTap: () => _openDrawerItem('База знаний'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('О программе'),
+              onTap: () => _openDrawerItem('О программе'),
+            ),
+          ],
+        ),
+      ),
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Профиль'),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Новая'),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Мои'),
+          BottomNavigationBarItem(icon: Icon(Icons.restaurant), label: 'БЖУ'),
+        ],
+      ),
+    );
+  }
+}

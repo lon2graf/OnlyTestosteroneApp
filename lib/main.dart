@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:only_testosterone/models/user_model.dart';
+import 'package:only_testosterone/screens/home_screen.dart';
 import 'package:only_testosterone/supabase/supabase_config.dart';
 import 'package:only_testosterone/services/user_services.dart';
 import 'package:only_testosterone/screens/login_screen.dart';
@@ -12,9 +13,9 @@ void main() async {
   SupabaseConfig.init();
 
   final GoRouter appRouter = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/login',
     routes: [
-      GoRoute(path: '/', builder: (context, state) => LoginScreen()),
+      GoRoute(path: '/home', builder: (context, state) => HomeScreen()),
       GoRoute(path: '/login', builder: (context, state) => LoginScreen()),
       GoRoute(path: '/register', builder: (context, state) => RegistrationScreen()),
     ],

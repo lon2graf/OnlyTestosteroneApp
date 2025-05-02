@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:only_testosterone/services/user_services.dart';
 import 'package:only_testosterone/widgets/custom_text_field.dart'; // не забудь поправить путь!
+import 'package:only_testosterone/models/user_model.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -303,6 +304,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         return 'Неизвестный уровень';
     }
   }
+
   void _updateTrainingLevel() {
     final weight = double.tryParse(_weightController.text) ?? 0;
     final squatMax = double.tryParse(_squatController.text) ?? 0;
@@ -322,8 +324,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     });
   }
 
-  void _completeRegistration() {
+  void _completeRegistration() async {
     // Здесь логика завершения регистрации
+    UserModel user = new UserModel(
+      name: _nameController.text,
+      login: _loginController.text,
+      password: _passwordController.text,
+      weight: double.tryParse(_weightController.text),
+      gender: _selectedGender,
+      benchPress: double.tryParse(_benchController.text),
+      squat: double.tryParse(_squatController.text),
+      deadLift: double.tryParse(_deadliftController.text),
+      levelOfTraining: _calculatedLevel,
+      dailyCalories: 0,
+    );
+    await UserServices.registerUser(user);
     print("Регистрация завершена!");
     print("Логин: ${_loginController.text}");
     print("Имя: ${_nameController.text}");

@@ -9,28 +9,28 @@ class UserServices {
   static Future<void> registerUser(UserModel user) async {
     final _supClient = Supabase.instance.client;
 
-    try{
-      final existingUser =
-      await _supClient
+    try {
+      // Проверка существования пользователя с таким логином
+      final existingUser = await _supClient
           .from('Users')
           .select()
           .eq('login', user.login)
           .maybeSingle();
 
       if (existingUser != null) {
-        throw Exception(('Пользователь с таким логином уже существует'));
-      } else {
-        final response = await _supClient.from('Users').insert(user.toJson());
-
-        if (response.error != null) {
-          throw Exception('Ошибка при регистрации : ${response.error.message}');
-        }
+        throw Exception('Пользователь с таким логином уже существует');
       }
-    }
-    catch(e){
+
+      // Подготовка данных пользователя
+      final userData = Map<String, dynamic>.from(user.toJson());
+      userData.remove('id');
+
+      // Вставка пользователя в таблицу
+      final response = await _supClient.from('Users').insert(userData);
+
+    } catch (e) {
       print("Ошибка при регистрации пользователя - $e");
     }
-
   }
 
   //логиним пользователя

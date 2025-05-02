@@ -26,7 +26,7 @@ class UserModel {
   });
 
   Map<String, dynamic> toJson(){
-    return
+    final map =
       {
         'id':id,
         'login': login,
@@ -40,6 +40,7 @@ class UserModel {
         'levelOfTraining' : levelOfTraining,
         'daily_calories' : dailyCalories
       };
+    return map;
   }
 
   factory UserModel.fromJson(Map<String, dynamic> json) {

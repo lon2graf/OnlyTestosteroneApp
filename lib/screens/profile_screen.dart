@@ -25,14 +25,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _loadUser() async {
     try {
       final userId = await UserPreferences.getUserId();
-      if (userId == null) {
-        throw Exception('Пользователь не найден');
-      }
-
+      if (userId == null) throw Exception('Пользователь не найден');
       final user = await UserServices.getUserById(userId);
-      if (user == null) {
-        throw Exception('Ошибка при получении данных пользователя');
-      }
+      if (user == null) throw Exception('Ошибка при получении пользователя');
 
       setState(() {
         _user = user;
@@ -54,9 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
+    if (_isLoading) return const Center(child: CircularProgressIndicator());
 
     if (_hasError || _user == null) {
       return Center(
@@ -78,33 +71,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
       );
     }
 
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Имя: ${_user!.name}', style: _textStyle),
-          Text('Логин: ${_user!.login}', style: _textStyle),
-          Text('Вес: ${_user!.weight} кг', style: _textStyle),
-          Text('Пол: ${_user!.gender}', style: _textStyle),
-          Text('Жим лёжа (1ПМ): ${_user!.benchPress} кг', style: _textStyle),
-          Text('Присед (1ПМ): ${_user!.squat} кг', style: _textStyle),
-          Text('Тяга (1ПМ): ${_user!.deadLift} кг', style: _textStyle),
-          Text('Уровень подготовки: ${_user!.levelOfTraining}', style: _textStyle),
-          Text('Калораж: ${_user!.dailyCalories} ккал', style: _textStyle),
-          const Spacer(),
+          const CircleAvatar(
+            radius: 50,
+            backgroundColor: Colors.black,
+            child: Icon(Icons.person, size: 50, color: Colors.white),
+          ),
+          const SizedBox(height: 20),
+          _buildCard('Имя', _user!.name),
+          _buildCard('Логин', _user!.login),
+          _buildCard('Вес', '${_user!.weight} кг'),
+          _buildCard('Пол', _user!.gender ?? '-'),
+          _buildCard('Жим лёжа', '${_user!.benchPress} кг'),
+          _buildCard('Присед', '${_user!.squat} кг'),
+          _buildCard('Становая тяга', '${_user!.deadLift} кг'),
+          _buildCard('Уровень подготовки', _user!.levelOfTraining.toString()),
+          _buildCard('Калораж', '${_user!.dailyCalories} ккал'),
+          const SizedBox(height: 30),
           SizedBox(
             width: double.infinity,
-            child: ElevatedButton(
+            child: ElevatedButton.icon(
               onPressed: _logout,
+              icon: const Icon(Icons.logout),
+              label: const Text('Выйти'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 18),
-                textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                textStyle: const TextStyle(fontSize: 16),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
-              child: const Text('Выйти'),
             ),
           ),
         ],
@@ -112,5 +111,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  TextStyle get _textStyle => const TextStyle(fontSize: 18, height: 1.6);
+  Widget _buildCard(String title, String value) {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(vertical: 6),
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade100,
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade300,
+            blurRadius: 6,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+          Text(value, style: const TextStyle(fontSize: 16)),
+        ],
+      ),
+    );
+  }
 }

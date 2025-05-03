@@ -44,18 +44,25 @@ class UserModel {
   }
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
+    double? _toDouble(dynamic value) {
+      if (value == null) return null;
+      if (value is int) return value.toDouble();
+      if (value is double) return value;
+      return double.tryParse(value.toString());
+    }
+
     return UserModel(
       id: json['id'],
       login: json['login'],
       name: json['name'],
       password: json['password'],
-      weight: json['weight'],
+      weight: _toDouble(json['weight']),
       gender: json['gender'],
-      benchPress: json['Rm_benchPress'],
-      deadLift: json['Rm_deadLift'],
-      squat: json['Rm_squat'],
+      benchPress: _toDouble(json['Rm_benchPress']),
+      deadLift: _toDouble(json['Rm_deadLift']),
+      squat: _toDouble(json['Rm_squat']),
       levelOfTraining: json['levelOfTraining'],
-      dailyCalories: json['daily_calories'],
+      dailyCalories: _toDouble(json['daily_calories']),
     );
   }
 

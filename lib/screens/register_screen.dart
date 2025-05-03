@@ -338,7 +338,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       squat: double.tryParse(_squatController.text),
       deadLift: double.tryParse(_deadliftController.text),
       levelOfTraining: _calculatedLevel,
-      dailyCalories: 0,
+      dailyCalories: 0.0,
     );
     int? userId = await UserServices.registerUser(user);
 

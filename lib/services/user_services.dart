@@ -89,7 +89,6 @@ class UserServices {
     }
   }
 
-
   static Future<bool> isLoginTaker(String login) async{
     final _supClient = Supabase.instance.client;
     try {
@@ -112,6 +111,23 @@ class UserServices {
     catch(e){
       print("Ошибка при логине >> $e");
       return false;
+    }
+  }
+
+  static Future<UserModel?> getUserById(int id) async {
+    final _supClient = Supabase.instance.client;
+    try {
+      final response = await _supClient
+          .from('Users') // таблица в Supabase
+          .select()
+          .eq('id', id)
+          .single(); // ожидаем один результат
+
+      print('Response data: ${response}'); // Логируем ответ
+      return UserModel.fromJson(response); // Используем response.data, а не сам response
+    } catch (e) {
+      print('Ошибка при получении пользователя: $e');
+      return null;
     }
   }
 

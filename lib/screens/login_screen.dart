@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // Импортируем для работы с SVG
 import 'package:only_testosterone/services/user_preferences.dart';
 import 'package:only_testosterone/services/user_services.dart';
-import 'package:only_testosterone/widgets/custom_nav_button.dart';
 import 'package:only_testosterone/widgets/custom_text_field.dart';
 import 'package:go_router/go_router.dart';
 
@@ -41,7 +40,7 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 40),
 
-              // Полt для ввода логина
+              // Поле для ввода логина
               CustomTextField(hintText: "Логин", controller: loginController),
 
               const SizedBox(height: 16),

@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:only_testosterone/services/user_services.dart';
 import 'package:only_testosterone/widgets/custom_text_field.dart'; // не забудь поправить путь!
 import 'package:only_testosterone/models/user_model.dart';
+import 'package:go_router/go_router.dart';
+import 'package:only_testosterone/services/user_preferences.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -338,7 +340,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       levelOfTraining: _calculatedLevel,
       dailyCalories: 0,
     );
-    await UserServices.registerUser(user);
+    int? userId = await UserServices.registerUser(user);
+
+
+    if (userId != null) {
+      await UserPreferences.saveUserId(userId);
+      print('айдишник $userId');
+      context.push('/home');
+    }
+    else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Ошибка при регистрации'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+
     print("Регистрация завершена!");
     print("Логин: ${_loginController.text}");
     print("Имя: ${_nameController.text}");

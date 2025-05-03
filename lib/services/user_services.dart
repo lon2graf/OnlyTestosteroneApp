@@ -6,11 +6,10 @@ class UserServices {
   //регистрация нового подьзователя
   //сначала проверяем что логин не занят
   //потом добавляем новую запись в бд
-  static Future<void> registerUser(UserModel user) async {
+  static Future<int?> registerUser(UserModel user) async {
     final _supClient = Supabase.instance.client;
 
     try {
-      // Проверка существования пользователя с таким логином
       final existingUser = await _supClient
           .from('Users')
           .select()
@@ -21,15 +20,23 @@ class UserServices {
         throw Exception('Пользователь с таким логином уже существует');
       }
 
-      // Подготовка данных пользователя
       final userData = Map<String, dynamic>.from(user.toJson());
       userData.remove('id');
 
-      // Вставка пользователя в таблицу
-      final response = await _supClient.from('Users').insert(userData);
+      final List<dynamic> insertResponse = await _supClient
+          .from('Users')
+          .insert(userData)
+          .select(); // обязательно .select()
 
+      if (insertResponse.isNotEmpty && insertResponse.first != null) {
+        final insertedUser = insertResponse.first as Map<String, dynamic>;
+        return insertedUser['id'] as int?;
+      } else {
+        throw Exception('Регистрация прошла, но ответ пуст');
+      }
     } catch (e) {
       print("Ошибка при регистрации пользователя - $e");
+      return null;
     }
   }
 
@@ -60,28 +67,28 @@ class UserServices {
     }
   }
 
-  static Future<bool> loginUserWithString (String login, String password) async {
+  static Future<int?> loginUserWithString(String login, String password) async {
     final _supClient = Supabase.instance.client;
-    try{
-      final response =
-      await _supClient
+
+    try {
+      final response = await _supClient
           .from('Users')
           .select()
           .eq('login', login)
           .eq('password', password)
           .maybeSingle();
 
-      if (response != null)
-        return true;
-      else
-        return false;
-
-    }
-    catch(e){
-      print("Ошибка при логине >> $e");
-      return false;
+      if (response != null) {
+        return response['id']; // Успешно — возвращаем ID
+      } else {
+        return null; // Неверный логин/пароль
+      }
+    } catch (e) {
+      print('Ошибка при авторизации: $e');
+      return null;
     }
   }
+
 
   static Future<bool> isLoginTaker(String login) async{
     final _supClient = Supabase.instance.client;

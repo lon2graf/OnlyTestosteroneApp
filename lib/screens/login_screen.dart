@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // Импортируем для работы с SVG
+import 'package:only_testosterone/services/user_preferences.dart';
 import 'package:only_testosterone/services/user_services.dart';
 import 'package:only_testosterone/widgets/custom_nav_button.dart';
 import 'package:only_testosterone/widgets/custom_text_field.dart';
@@ -54,15 +55,6 @@ class LoginScreen extends StatelessWidget {
               ), // Обеспечиваем скрытие пароля
               const SizedBox(height: 10),
 
-              // Кнопка для авторизации
-              //CustomNavButton(text: 'Войти', routeName: '/home'),
-              //TextButton(
-              //onPressed: () {
-              //context.push('/register');
-              //},
-              //child: Text('Нет аккаунта? Зарегайся!'),
-              //),
-
               TextButton(
                 onPressed: () {
                   context.push('/register');
@@ -72,18 +64,29 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 60),
               ElevatedButton(
                 onPressed: () async {
-                  bool canLogin = await UserServices.loginUserWithString(
+                  int? userId = await UserServices.loginUserWithString(
                     loginController.text,
                     passwordController.text,
                   );
-                  if (canLogin) {
+
+                  if (userId != null) {
+                    await UserPreferences.saveUserId(userId);
+                    print('айдишник $userId');
                     context.push('/home');
                   } else {
-                    print('свабодин');
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Неправильный логин или пароль'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 60), // Кнопка на всю ширину и 60 высоты
+                  minimumSize: const Size(
+                    double.infinity,
+                    60,
+                  ), // Кнопка на всю ширину и 60 высоты
                   backgroundColor: Colors.black, // Чёрный фон кнопки
                   foregroundColor: Colors.white, // Белый цвет текста
                   textStyle: const TextStyle(
@@ -91,12 +94,13 @@ class LoginScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12), // Скругление краёв кнопки
+                    borderRadius: BorderRadius.circular(
+                      12,
+                    ), // Скругление краёв кнопки
                   ),
                 ),
                 child: const Text("Войти"),
               ),
-
             ],
           ),
         ),

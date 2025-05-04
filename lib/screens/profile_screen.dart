@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:only_testosterone/models/user_model.dart';
-import 'package:only_testosterone/services/user_services.dart';
-import 'package:go_router/go_router.dart';
 import 'package:only_testosterone/services/user_preferences.dart';
+import 'package:only_testosterone/services/user_services.dart';
+import 'package:only_testosterone/screens/login_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -14,7 +14,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   UserModel? _user;
   bool _isLoading = true;
-  bool _hasError = false;
+  String? _errorMessage;
 
   @override
   void initState() {
@@ -25,113 +25,121 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _loadUser() async {
     try {
       final userId = await UserPreferences.getUserId();
-      if (userId == null) throw Exception('Пользователь не найден');
-      final user = await UserServices.getUserById(userId);
-      if (user == null) throw Exception('Ошибка при получении пользователя');
-
-      setState(() {
-        _user = user;
-        _isLoading = false;
-      });
+      if (userId != null) {
+        final user = await UserServices.getUserById(userId);
+        if (user != null) {
+          setState(() {
+            _user = user;
+            _isLoading = false;
+          });
+        } else {
+          throw Exception("Пользователь не найден");
+        }
+      } else {
+        throw Exception("ID пользователя не найден");
+      }
     } catch (e) {
-      print('Ошибка: $e');
       setState(() {
-        _hasError = true;
+        _errorMessage = 'Ошибка при получении пользователя';
         _isLoading = false;
       });
     }
   }
 
-  void _logout() async {
-    await UserPreferences.clearUserId();
-    if (mounted) context.go('/login');
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_isLoading) return const Center(child: CircularProgressIndicator());
-
-    if (_hasError || _user == null) {
-      return Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Не удалось загрузить профиль.'),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: _loadUser,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                foregroundColor: Colors.white,
-              ),
-              child: const Text('Повторить'),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          const CircleAvatar(
-            radius: 50,
-            backgroundColor: Colors.black,
-            child: Icon(Icons.person, size: 50, color: Colors.white),
-          ),
-          const SizedBox(height: 20),
-          _buildCard('Имя', _user!.name),
-          _buildCard('Логин', _user!.login),
-          _buildCard('Вес', '${_user!.weight} кг'),
-          _buildCard('Пол', _user!.gender ?? '-'),
-          _buildCard('Жим лёжа', '${_user!.benchPress} кг'),
-          _buildCard('Присед', '${_user!.squat} кг'),
-          _buildCard('Становая тяга', '${_user!.deadLift} кг'),
-          _buildCard('Уровень подготовки', _user!.levelOfTraining.toString()),
-          _buildCard('Калораж', '${_user!.dailyCalories} ккал'),
-          const SizedBox(height: 30),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton.icon(
-              onPressed: _logout,
-              icon: const Icon(Icons.logout),
-              label: const Text('Выйти'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                textStyle: const TextStyle(fontSize: 16),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-              ),
-            ),
-          ),
-        ],
+  Widget _buildInfoCard(IconData icon, String title, String value) {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: ListTile(
+        leading: Icon(icon, color: Colors.black),
+        title: Text(title),
+        subtitle: Text(value),
       ),
     );
   }
 
-  Widget _buildCard(String title, String value) {
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 6),
-      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade100,
-        borderRadius: BorderRadius.circular(14),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            blurRadius: 6,
-            offset: const Offset(0, 4),
-          ),
-        ],
+  Widget _buildOneRMCard() {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: ListTile(
+        leading: const Icon(Icons.fitness_center, color: Colors.black),
+        title: const Text("Результаты 1ПМ"),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 4),
+            Text("Жим лёжа: ${_user!.benchPress?.toString() ?? '—'} кг"),
+            Text("Присед: ${_user!.squat?.toString() ?? '—'} кг"),
+            Text("Становая: ${_user!.deadLift?.toString() ?? '—'} кг"),
+          ],
+        ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    );
+  }
+
+  void _logout() async {
+    await UserPreferences.clearUserId();
+    if (!mounted) return;
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const LoginScreen()),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (_errorMessage != null) {
+      return Center(child: Text(_errorMessage!));
+    }
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.only(top: 24, bottom: 60),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-          Text(value, style: const TextStyle(fontSize: 16)),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+            child: Text(
+              "Добро пожаловать!",
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          _buildInfoCard(Icons.person, "Имя", _user!.name ?? '—'),
+          _buildInfoCard(Icons.account_circle, "Логин", _user!.login ?? '—'),
+          _buildInfoCard(Icons.monitor_weight, "Вес", "${_user!.weight ?? '—'} кг"),
+          _buildInfoCard(
+            Icons.wc,
+            "Пол",
+            _user!.gender == 'м' ? 'Мужской' : _user!.gender == 'ж' ? 'Женский' : '—',
+          ),
+          _buildOneRMCard(),
+          _buildInfoCard(Icons.military_tech, "Уровень подготовки", _user!.levelOfTraining?.toString() ?? '—'),
+          _buildInfoCard(Icons.local_fire_department, "Калории в день", "${_user!.dailyCalories?.toStringAsFixed(0) ?? '—'} ккал"),
+          const SizedBox(height: 24),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                minimumSize: const Size.fromHeight(50),
+              ),
+              onPressed: _logout,
+              child: const Text("Выйти"),
+            ),
+          ),
         ],
       ),
     );

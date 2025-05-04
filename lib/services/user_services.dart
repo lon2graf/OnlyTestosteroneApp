@@ -139,36 +139,40 @@ class UserServices {
     required double deadliftMax,
   }) {
     if (gender == 'М') {
-      if ((squatMax >= 0.5 * weight && squatMax <= 1 * weight) ||
-          (benchPressMax >= 0.4 * weight && benchPressMax <= 0.7 * weight) ||
-          (deadliftMax >= 0.5 * weight && deadliftMax <= 1 * weight)) {
-        return 0; // Новичок
-      } else if ((squatMax >= 1 * weight && squatMax <= 1.5 * weight) ||
-          (benchPressMax >= 0.7 * weight && benchPressMax <= 1 * weight) ||
-          (deadliftMax >= 1 * weight && deadliftMax <= 1.5 * weight)) {
-        return 1; // Средний
-      } else if ((squatMax > 1.5 * weight) ||
-          (benchPressMax >= 1 * weight) ||
-          (deadliftMax >= 1.5 * weight)) {
-        return 2; // Продвинутый
-      }
+      bool isNovice = (squatMax >= 0.6 * weight && squatMax < 1.1 * weight) &&
+          (benchPressMax >= 0.5 * weight && benchPressMax < 0.8 * weight) &&
+          (deadliftMax >= 0.6 * weight && deadliftMax < 1.1 * weight);
+
+      bool isIntermediate = (squatMax >= 1.1 * weight && squatMax < 1.6 * weight) &&
+          (benchPressMax >= 0.8 * weight && benchPressMax < 1.1 * weight) &&
+          (deadliftMax >= 1.1 * weight && deadliftMax < 1.6 * weight);
+
+      bool isAdvanced = (squatMax >= 1.6 * weight) &&
+          (benchPressMax >= 1.1 * weight) &&
+          (deadliftMax >= 1.6 * weight);
+
+      if (isAdvanced) return 2;
+      if (isIntermediate) return 1;
+      if (isNovice) return 0;
     } else if (gender == 'Ж') {
-      if ((squatMax >= 0.4 * weight && squatMax <= 0.8 * weight) ||
-          (benchPressMax >= 0.3 * weight && benchPressMax <= 0.6 * weight) ||
-          (deadliftMax >= 0.4 * weight && deadliftMax <= 0.8 * weight)) {
-        return 0; // Новичок
-      } else if ((squatMax >= 0.8 * weight && squatMax <= 1.2 * weight) ||
-          (benchPressMax >= 0.6 * weight && benchPressMax <= 0.8 * weight) ||
-          (deadliftMax >= 0.8 * weight && deadliftMax <= 1.2 * weight)) {
-        return 1; // Средний
-      } else if ((squatMax > 1.2 * weight) ||
-          (benchPressMax >= 0.8 * weight) ||
-          (deadliftMax >= 1.2 * weight)) {
-        return 2; // Продвинутый
-      }
+      bool isNovice = (squatMax >= 0.5 * weight && squatMax < 0.9 * weight) &&
+          (benchPressMax >= 0.4 * weight && benchPressMax < 0.7 * weight) &&
+          (deadliftMax >= 0.5 * weight && deadliftMax < 0.9 * weight);
+
+      bool isIntermediate = (squatMax >= 0.9 * weight && squatMax < 1.3 * weight) &&
+          (benchPressMax >= 0.7 * weight && benchPressMax < 0.9 * weight) &&
+          (deadliftMax >= 0.9 * weight && deadliftMax < 1.3 * weight);
+
+      bool isAdvanced = (squatMax >= 1.3 * weight) &&
+          (benchPressMax >= 0.9 * weight) &&
+          (deadliftMax >= 1.3 * weight);
+
+      if (isAdvanced) return 2;
+      if (isIntermediate) return 1;
+      if (isNovice) return 0;
     }
 
-    return 0; // По умолчанию считаем новичком
+    return 0;
   }
 }
 

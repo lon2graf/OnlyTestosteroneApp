@@ -1,0 +1,453 @@
+{
+    "type": "пауэрлифтинг",
+    "name": "Программа для женщины (Уровень 0)",
+    "number_of_days_per_week": 3,
+    "duration": 6,
+    "creation_date": "2024-11-07",
+    "exercises": [
+      {
+        "training_day": 1,
+        "name": "Приседания с гантелями",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "45% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 1,
+        "name": "Жим лёжа",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "40% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 1,
+        "name": "Тяга верхнего блока",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "умеренный",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 2,
+        "name": "Становая тяга с гантелями",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "45% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 2,
+        "name": "Жим узким хватом",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "35% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 2,
+        "name": "Разведение гантелей стоя",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "лёгкий",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 3,
+        "name": "Приседания",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "50% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 3,
+        "name": "Жим лёжа",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "45% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 3,
+        "name": "Подъём на носки",
+        "sets": 3,
+        "repetitions": 15,
+        "weight": "умеренный",
+        "rest_after_set": 60
+      },
+
+      {
+        "training_day": 4,
+        "name": "Приседания с гантелями",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "45% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 4,
+        "name": "Жим лёжа",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "40% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 4,
+        "name": "Тяга верхнего блока",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "умеренный",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 5,
+        "name": "Становая тяга с гантелями",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "45% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 5,
+        "name": "Жим узким хватом",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "35% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 5,
+        "name": "Разведение гантелей стоя",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "лёгкий",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 6,
+        "name": "Приседания",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "50% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 6,
+        "name": "Жим лёжа",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "45% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 6,
+        "name": "Подъём на носки",
+        "sets": 3,
+        "repetitions": 15,
+        "weight": "умеренный",
+        "rest_after_set": 60
+      },
+
+
+
+
+
+      {
+        "training_day": 7,
+        "name": "Приседания с гантелями",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "50% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 7,
+        "name": "Жим лёжа",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "45% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 7,
+        "name": "Тяга верхнего блока",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "умеренный",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 8,
+        "name": "Становая тяга с гантелями",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "50% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 8,
+        "name": "Жим узким хватом",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "40% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 8,
+        "name": "Подъём на носки",
+        "sets": 3,
+        "repetitions": 15,
+        "weight": "умеренный",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 9,
+        "name": "Приседания",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "55% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 9,
+        "name": "Жим лёжа",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "50% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 9,
+        "name": "Разведение гантелей стоя",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "лёгкий",
+        "rest_after_set": 60
+      },
+
+      {
+        "training_day": 10,
+        "name": "Приседания с гантелями",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "50% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 10,
+        "name": "Жим лёжа",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "45% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 10,
+        "name": "Тяга верхнего блока",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "умеренный",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 11,
+        "name": "Становая тяга с гантелями",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "50% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 11,
+        "name": "Жим узким хватом",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "40% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 11,
+        "name": "Подъём на носки",
+        "sets": 3,
+        "repetitions": 15,
+        "weight": "умеренный",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 12,
+        "name": "Приседания",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "55% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 12,
+        "name": "Жим лёжа",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "50% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 12,
+        "name": "Разведение гантелей стоя",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "лёгкий",
+        "rest_after_set": 60
+      },
+
+
+
+
+      {
+        "training_day": 13,
+        "name": "Приседания с гантелями",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "55% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 13,
+        "name": "Жим лёжа",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "50% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 13,
+        "name": "Тяга верхнего блока",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "умеренный",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 14,
+        "name": "Становая тяга с гантелями",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "55% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 14,
+        "name": "Жим узким хватом",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "45% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 14,
+        "name": "Подъём на носки",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "умеренный",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 15,
+        "name": "Приседания",
+        "sets": 4,
+        "repetitions": 6,
+        "weight": "60% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 15,
+        "name": "Жим лёжа",
+        "sets": 3,
+        "repetitions": 6,
+        "weight": "55% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 15,
+        "name": "Разведение гантелей стоя",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "лёгкий",
+        "rest_after_set": 60
+      },
+
+      {
+        "training_day": 16,
+        "name": "Приседания с гантелями",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "55% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 16,
+        "name": "Жим лёжа",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "50% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 16,
+        "name": "Тяга верхнего блока",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "умеренный",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 17,
+        "name": "Становая тяга с гантелями",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "55% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 17,
+        "name": "Жим узким хватом",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "45% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 17,
+        "name": "Подъём на носки",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "умеренный",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 18,
+        "name": "Приседания",
+        "sets": 4,
+        "repetitions": 6,
+        "weight": "60% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 18,
+        "name": "Жим лёжа",
+        "sets": 3,
+        "repetitions": 6,
+        "weight": "55% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 18,
+        "name": "Разведение гантелей стоя",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "лёгкий",
+        "rest_after_set": 60
+      }
+    ]
+  }

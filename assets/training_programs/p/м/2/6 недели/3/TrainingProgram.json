@@ -1,0 +1,441 @@
+{
+    "type": "пауэрлифтинг",
+    "name": "Пауэрлифтинг-программа (Уровень 2, Мужчины)",
+    "number_of_days_per_week": 3,
+    "duration": 6,
+    "creation_date": "2024-11-07",
+    "exercises": [
+        {
+            "training_day": 1,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "80% от 1RM",
+            "rest_after_set": 120
+        },
+        {
+            "training_day": 1,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "75% от 1RM",
+            "rest_after_set": 120
+        },
+        {
+            "training_day": 1,
+            "name": "Подтягивания",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "с собственным весом",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 2,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "80% от 1RM",
+            "rest_after_set": 150
+        },
+        {
+            "training_day": 2,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "70% от 1RM",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 2,
+            "name": "Гиперэкстензия",
+            "sets": 3,
+            "repetitions": 12,
+            "weight": "с собственным весом",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 3,
+            "name": "Приседания",
+            "sets": 3,
+            "repetitions": 5,
+            "weight": "80% от 1RM",
+            "rest_after_set": 120
+        },
+        {
+            "training_day": 3,
+            "name": "Жим лёжа",
+            "sets": 3,
+            "repetitions": 5,
+            "weight": "75% от 1RM",
+            "rest_after_set": 120
+        },
+        {
+            "training_day": 3,
+            "name": "Скручивания на пресс",
+            "sets": 3,
+            "repetitions": 15,
+            "weight": null,
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 4,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 4,
+            "weight": "82.5% от 1RM",
+            "rest_after_set": 120
+        },
+        {
+            "training_day": 4,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 4,
+            "weight": "77.5% от 1RM",
+            "rest_after_set": 120
+        },
+        {
+            "training_day": 4,
+            "name": "Тяга штанги в наклоне",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "70% от 1RM",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 5,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 4,
+            "weight": "82.5% от 1RM",
+            "rest_after_set": 150
+        },
+        {
+            "training_day": 5,
+            "name": "Отжимания на брусьях",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "с отягощением",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 5,
+            "name": "Скручивания на пресс",
+            "sets": 3,
+            "repetitions": 15,
+            "weight": null,
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 6,
+            "name": "Приседания",
+            "sets": 3,
+            "repetitions": 4,
+            "weight": "82.5% от 1RM",
+            "rest_after_set": 120
+        },
+        {
+            "training_day": 6,
+            "name": "Жим лёжа",
+            "sets": 3,
+            "repetitions": 4,
+            "weight": "77.5% от 1RM",
+            "rest_after_set": 120
+        },
+        {
+            "training_day": 6,
+            "name": "Гиперэкстензия",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "с отягощением",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 7,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 3,
+            "weight": "85% от 1RM",
+            "rest_after_set": 150
+        },
+        {
+            "training_day": 7,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 3,
+            "weight": "80% от 1RM",
+            "rest_after_set": 150
+        },
+        {
+            "training_day": 7,
+            "name": "Подтягивания с отягощением",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": null,
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 8,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 3,
+            "weight": "85% от 1RM",
+            "rest_after_set": 150
+        },
+        {
+            "training_day": 8,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 6,
+            "weight": "75% от 1RM",
+            "rest_after_set": 120
+        },
+        {
+            "training_day": 8,
+            "name": "Скручивания на пресс",
+            "sets": 3,
+            "repetitions": 15,
+            "weight": null,
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 9,
+            "name": "Приседания",
+            "sets": 3,
+            "repetitions": 3,
+            "weight": "85% от 1RM",
+            "rest_after_set": 150
+        },
+        {
+            "training_day": 9,
+            "name": "Жим лёжа",
+            "sets": 3,
+            "repetitions": 3,
+            "weight": "80% от 1RM",
+            "rest_after_set": 150
+        },
+        {
+            "training_day": 9,
+            "name": "Гиперэкстензия",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "с отягощением",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 10,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 2,
+            "weight": "87.5% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 10,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 2,
+            "weight": "82.5% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 10,
+            "name": "Тяга штанги в наклоне",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "70% от 1RM",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 11,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 2,
+            "weight": "87.5% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 11,
+            "name": "Отжимания на брусьях с отягощением",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": null,
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 11,
+            "name": "Скручивания на пресс",
+            "sets": 3,
+            "repetitions": 15,
+            "weight": null,
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 12,
+            "name": "Приседания",
+            "sets": 3,
+            "repetitions": 2,
+            "weight": "87.5% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 12,
+            "name": "Жим лёжа",
+            "sets": 3,
+            "repetitions": 2,
+            "weight": "82.5% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 12,
+            "name": "Гиперэкстензия",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "с отягощением",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 13,
+            "name": "Приседания",
+            "sets": 3,
+            "repetitions": 1,
+            "weight": "90% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 13,
+            "name": "Жим лёжа",
+            "sets": 3,
+            "repetitions": 1,
+            "weight": "85% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 13,
+            "name": "Подтягивания с отягощением",
+            "sets": 3,
+            "repetitions": 6,
+            "weight": null,
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 14,
+            "name": "Становая тяга",
+            "sets": 3,
+            "repetitions": 1,
+            "weight": "90% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 14,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 3,
+            "weight": "80% от 1RM",
+            "rest_after_set": 120
+        },
+        {
+            "training_day": 14,
+            "name": "Скручивания на пресс",
+            "sets": 3,
+            "repetitions": 15,
+            "weight": null,
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 15,
+            "name": "Приседания",
+            "sets": 3,
+            "repetitions": 1,
+            "weight": "90% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 15,
+            "name": "Жим лёжа",
+            "sets": 3,
+            "repetitions": 1,
+            "weight": "85% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 15,
+            "name": "Гиперэкстензия",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "с отягощением",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 16,
+            "name": "Приседания",
+            "sets": 2,
+            "repetitions": 1,
+            "weight": "92.5% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 16,
+            "name": "Жим лёжа",
+            "sets": 2,
+            "repetitions": 1,
+            "weight": "87.5% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 16,
+            "name": "Тяга штанги в наклоне",
+            "sets": 3,
+            "repetitions": 6,
+            "weight": "с умеренным весом",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 17,
+            "name": "Становая тяга",
+            "sets": 2,
+            "repetitions": 1,
+            "weight": "92.5% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 17,
+            "name": "Отжимания на брусьях с отягощением",
+            "sets": 3,
+            "repetitions": 6,
+            "weight": null,
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 17,
+            "name": "Скручивания на пресс",
+            "sets": 3,
+            "repetitions": 15,
+            "weight": null,
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 18,
+            "name": "Приседания",
+            "sets": 2,
+            "repetitions": 1,
+            "weight": "92.5% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 18,
+            "name": "Жим лёжа",
+            "sets": 2,
+            "repetitions": 1,
+            "weight": "87.5% от 1RM",
+            "rest_after_set": 180
+        },
+        {
+            "training_day": 18,
+            "name": "Гиперэкстензия",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "с отягощением",
+            "rest_after_set": 60
+        }
+    ]
+}

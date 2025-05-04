@@ -1,0 +1,105 @@
+{
+    "type": "пауэрлифтинг",
+    "name": "Программа на 2 дня",
+    "number_of_days_per_week": 2,
+    "duration": 2,  
+    "creation_date": "2024-11-07",
+    "exercises": [
+      {
+        "training_day": 1,
+        "name": "Приседания",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "60% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 1,
+        "name": "Жим лёжа",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "55% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 1,
+        "name": "Тяга штанги в наклоне",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "50% от 1RM",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 2,
+        "name": "Становая тяга",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "60% от 1RM",
+        "rest_after_set": 120
+      },
+      {
+        "training_day": 2,
+        "name": "Жим узким хватом",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "50% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 2,
+        "name": "Подъем на бицепс со штангой",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "50% от 1RM",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 3,
+        "name": "Приседания",
+        "sets": 4,
+        "repetitions": 8,
+        "weight": "65% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 3,
+        "name": "Жим лёжа",
+        "sets": 4,
+        "repetitions": 8,
+        "weight": "60% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 3,
+        "name": "Тяга штанги в наклоне",
+        "sets": 4,
+        "repetitions": 10,
+        "weight": "55% от 1RM",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 4,
+        "name": "Становая тяга",
+        "sets": 4,
+        "repetitions": 6,
+        "weight": "65% от 1RM",
+        "rest_after_set": 120
+      },
+      {
+        "training_day": 4,
+        "name": "Жим узким хватом",
+        "sets": 4,
+        "repetitions": 8,
+        "weight": "55% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 4,
+        "name": "Подъем на бицепс со штангой",
+        "sets": 3,
+        "repetitions": 10,
+        "weight": "55% от 1RM",
+        "rest_after_set": 60
+      }
+    ]
+  }

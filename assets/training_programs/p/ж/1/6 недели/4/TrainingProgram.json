@@ -1,0 +1,777 @@
+{
+    "type": "пауэрлифтинг",
+    "name": "Пауэрлифтинг-программа (Уровень 1, Женщины)",
+    "number_of_days_per_week": 4,
+    "duration": 6,
+    "creation_date": "2024-11-07",
+    "exercises": [
+        {
+            "training_day": 1,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 6,
+            "weight": "50% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 1,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 6,
+            "weight": "50% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 1,
+            "name": "Тяга верхнего блока",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "лёгкий",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 1,
+            "name": "Пресс (подъемы ног в висе)",
+            "sets": 3,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 2,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 6,
+            "weight": "50% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 2,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 6,
+            "weight": "50% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 2,
+            "name": "Тяга к подбородку (шраги)",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 2,
+            "name": "Подъемы на носки (икры)",
+            "sets": 4,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 3,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 6,
+            "weight": "50% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 3,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 6,
+            "weight": "50% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 3,
+            "name": "Тяга верхнего блока",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "лёгкий",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 3,
+            "name": "Гиперэкстензии",
+            "sets": 3,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 4,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 6,
+            "weight": "50% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 4,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 6,
+            "weight": "50% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 4,
+            "name": "Тяга к подбородку (шраги)",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 4,
+            "name": "Подъемы на носки (икры)",
+            "sets": 4,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 5,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 6,
+            "weight": "55% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 5,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 6,
+            "weight": "55% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 5,
+            "name": "Тяга верхнего блока",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "лёгкий",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 5,
+            "name": "Гиперэкстензии",
+            "sets": 3,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 6,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 6,
+            "weight": "55% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 6,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 6,
+            "weight": "55% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 6,
+            "name": "Тяга к подбородку (шраги)",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 6,
+            "name": "Подъемы на носки (икры)",
+            "sets": 4,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 7,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 6,
+            "weight": "55% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 7,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 6,
+            "weight": "55% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 7,
+            "name": "Тяга верхнего блока",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "лёгкий",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 7,
+            "name": "Гиперэкстензии",
+            "sets": 3,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 8,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 6,
+            "weight": "55% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 8,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 6,
+            "weight": "55% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 8,
+            "name": "Тяга к подбородку (шраги)",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 8,
+            "name": "Подъемы на носки (икры)",
+            "sets": 4,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 9,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "60% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 9,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "60% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 9,
+            "name": "Тяга верхнего блока",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "лёгкий",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 9,
+            "name": "Гиперэкстензии",
+            "sets": 3,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 10,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "60% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 10,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 5,
+            "weight": "60% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 10,
+            "name": "Тяга к подбородку (шраги)",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 10,
+            "name": "Подъемы на носки (икры)",
+            "sets": 4,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 11,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "60% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 11,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "60% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 11,
+            "name": "Тяга верхнего блока",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "лёгкий",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 11,
+            "name": "Гиперэкстензии",
+            "sets": 3,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 12,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "60% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 12,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 5,
+            "weight": "60% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 12,
+            "name": "Тяга к подбородку (шраги)",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 12,
+            "name": "Подъемы на носки (икры)",
+            "sets": 4,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 13,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "65% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 13,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "65% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 13,
+            "name": "Тяга верхнего блока",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "лёгкий",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 13,
+            "name": "Гиперэкстензии",
+            "sets": 3,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 14,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "65% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 14,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 5,
+            "weight": "65% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 14,
+            "name": "Тяга к подбородку (шраги)",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 14,
+            "name": "Подъемы на носки (икры)",
+            "sets": 4,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 15,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "65% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 15,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "65% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 15,
+            "name": "Тяга верхнего блока",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "лёгкий",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 15,
+            "name": "Гиперэкстензии",
+            "sets": 3,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 16,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 5,
+            "weight": "65% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 16,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 5,
+            "weight": "65% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 16,
+            "name": "Тяга к подбородку (шраги)",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 16,
+            "name": "Подъемы на носки (икры)",
+            "sets": 4,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 17,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 4,
+            "weight": "70% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 17,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 4,
+            "weight": "70% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 17,
+            "name": "Тяга верхнего блока",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "лёгкий",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 17,
+            "name": "Гиперэкстензии",
+            "sets": 3,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 18,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 4,
+            "weight": "70% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 18,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 4,
+            "weight": "70% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 18,
+            "name": "Тяга к подбородку (шраги)",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 18,
+            "name": "Подъемы на носки (икры)",
+            "sets": 4,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 19,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 4,
+            "weight": "70% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 19,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 4,
+            "weight": "70% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 19,
+            "name": "Тяга верхнего блока",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "лёгкий",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 19,
+            "name": "Гиперэкстензии",
+            "sets": 3,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 20,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 4,
+            "weight": "70% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 20,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 4,
+            "weight": "70% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 20,
+            "name": "Тяга к подбородку (шраги)",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 20,
+            "name": "Подъемы на носки (икры)",
+            "sets": 4,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 21,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 3,
+            "weight": "75% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 21,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 3,
+            "weight": "75% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 21,
+            "name": "Тяга верхнего блока",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "лёгкий",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 21,
+            "name": "Гиперэкстензии",
+            "sets": 3,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 22,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 3,
+            "weight": "75% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 22,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 3,
+            "weight": "75% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 22,
+            "name": "Тяга к подбородку (шраги)",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 22,
+            "name": "Подъемы на носки (икры)",
+            "sets": 4,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 23,
+            "name": "Приседания",
+            "sets": 4,
+            "repetitions": 3,
+            "weight": "75% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 23,
+            "name": "Жим лёжа",
+            "sets": 4,
+            "repetitions": 3,
+            "weight": "75% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 23,
+            "name": "Тяга верхнего блока",
+            "sets": 3,
+            "repetitions": 8,
+            "weight": "лёгкий",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 23,
+            "name": "Гиперэкстензии",
+            "sets": 3,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 24,
+            "name": "Становая тяга",
+            "sets": 4,
+            "repetitions": 3,
+            "weight": "75% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 24,
+            "name": "Жим узким хватом",
+            "sets": 3,
+            "repetitions": 3,
+            "weight": "75% от 1ПМ",
+            "rest_after_set": 90
+        },
+        {
+            "training_day": 24,
+            "name": "Тяга к подбородку (шраги)",
+            "sets": 3,
+            "repetitions": 10,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        },
+        {
+            "training_day": 24,
+            "name": "Подъемы на носки (икры)",
+            "sets": 4,
+            "repetitions": 12,
+            "weight": "лёгкий",
+            "rest_after_set": 60
+        }
+    ]
+}

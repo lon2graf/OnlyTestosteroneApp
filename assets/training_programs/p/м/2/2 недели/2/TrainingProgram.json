@@ -1,0 +1,105 @@
+{
+    "type": "пауэрлифтинг",
+    "name": "Пауэрлифтинг-программа (Уровень 2, Мужчины)",
+    "number_of_days_per_week": 2,
+    "duration": 2,
+    "creation_date": "2024-11-08",
+    "exercises": [
+      {
+        "training_day": 1,
+        "name": "Приседания",
+        "sets": 4,
+        "repetitions": 3,
+        "weight": "85% от 1RM",
+        "rest_after_set": 120
+      },
+      {
+        "training_day": 1,
+        "name": "Жим лёжа",
+        "sets": 4,
+        "repetitions": 3,
+        "weight": "80% от 1RM",
+        "rest_after_set": 120
+      },
+      {
+        "training_day": 1,
+        "name": "Становая тяга",
+        "sets": 3,
+        "repetitions": 3,
+        "weight": "85% от 1RM",
+        "rest_after_set": 150
+      },
+      {
+        "training_day": 2,
+        "name": "Приседания",
+        "sets": 5,
+        "repetitions": 2,
+        "weight": "90% от 1RM",
+        "rest_after_set": 120
+      },
+      {
+        "training_day": 2,
+        "name": "Жим узким хватом",
+        "sets": 4,
+        "repetitions": 4,
+        "weight": "75% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 2,
+        "name": "Становая тяга",
+        "sets": 4,
+        "repetitions": 2,
+        "weight": "90% от 1RM",
+        "rest_after_set": 150
+      },
+      {
+        "training_day": 3,
+        "name": "Приседания",
+        "sets": 4,
+        "repetitions": 2,
+        "weight": "90% от 1RM",
+        "rest_after_set": 120
+      },
+      {
+        "training_day": 3,
+        "name": "Жим лёжа",
+        "sets": 4,
+        "repetitions": 2,
+        "weight": "85% от 1RM",
+        "rest_after_set": 120
+      },
+      {
+        "training_day": 3,
+        "name": "Становая тяга",
+        "sets": 3,
+        "repetitions": 2,
+        "weight": "90% от 1RM",
+        "rest_after_set": 150
+      },
+      {
+        "training_day": 4,
+        "name": "Приседания",
+        "sets": 5,
+        "repetitions": 1,
+        "weight": "95% от 1RM",
+        "rest_after_set": 120
+      },
+      {
+        "training_day": 4,
+        "name": "Жим узким хватом",
+        "sets": 3,
+        "repetitions": 3,
+        "weight": "80% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 4,
+        "name": "Становая тяга",
+        "sets": 4,
+        "repetitions": 1,
+        "weight": "95% от 1RM",
+        "rest_after_set": 150
+      }
+    ]
+  }

@@ -1,0 +1,138 @@
+{
+    "type": "пауэрлифтинг",
+    "name": "Программа для женщины (Уровень 1)",
+    "number_of_days_per_week": 2,
+    "duration": 4,
+    "creation_date": "2024-11-07",
+    "exercises": [
+      {
+        "training_day": 1,
+        "name": "Приседания со штангой",
+        "sets": 4,
+        "repetitions": "6-8",
+        "weight": "55% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 1,
+        "name": "Жим лёжа",
+        "sets": 4,
+        "repetitions": "6-8",
+        "weight": "50% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 1,
+        "name": "Тяга верхнего блока",
+        "sets": 3,
+        "repetitions": "8-10",
+        "weight": "умеренный",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 1,
+        "name": "Подъемы на носки (икры)",
+        "sets": 4,
+        "repetitions": "12-15",
+        "weight": "лёгкий",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 2,
+        "name": "Становая тяга",
+        "sets": 4,
+        "repetitions": "6-8",
+        "weight": "55% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 2,
+        "name": "Жим узким хватом",
+        "sets": 3,
+        "repetitions": "6-8",
+        "weight": "45% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 2,
+        "name": "Подтягивания (с помощью тренажера или с резинкой)",
+        "sets": 3,
+        "repetitions": "6-8",
+        "weight": null, 
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 2,
+        "name": "Пресс (подъемы ног в висе)",
+        "sets": 3,
+        "repetitions": "12-15",
+        "weight": null,
+        "rest_after_set": 60
+      },
+
+      {
+        "training_day": 3,
+        "name": "Приседания со штангой",
+        "sets": 4,
+        "repetitions": 6,
+        "weight": "60% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 3,
+        "name": "Жим лёжа",
+        "sets": 4,
+        "repetitions": 6,
+        "weight": "55% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 3,
+        "name": "Тяга верхнего блока",
+        "sets": 3,
+        "repetitions": "8-10",
+        "weight": "умеренный",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 3,
+        "name": "Подъемы на носки (икры)",
+        "sets": 4,
+        "repetitions": "12-15",
+        "weight": "лёгкий",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 4,
+        "name": "Становая тяга",
+        "sets": 4,
+        "repetitions": 6,
+        "weight": "60% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 4,
+        "name": "Жим узким хватом",
+        "sets": 3,
+        "repetitions": 6,
+        "weight": "50% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 4,
+        "name": "Подтягивания (с помощью тренажера или с резинкой)",
+        "sets": 3,
+        "repetitions": "6-8",
+        "weight": null,
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 4,
+        "name": "Пресс (подъемы ног в висе)",
+        "sets": 3,
+        "repetitions": "12-15",
+        "weight": null,
+        "rest_after_set": 60
+      }
+    ]
+  }

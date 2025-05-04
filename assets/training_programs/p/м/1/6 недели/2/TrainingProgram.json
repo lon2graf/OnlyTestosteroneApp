@@ -1,0 +1,137 @@
+{
+    "type": "пауэрлифтинг",
+    "name": "Программа для мужчины (Уровень 1)",
+    "number_of_days_per_week": 2,
+    "duration": 6,
+    "creation_date": "2024-11-07",
+    "exercises": [
+      {
+        "training_day": 1,
+        "name": "Приседания со штангой",
+        "sets": 4,
+        "repetitions": 6,
+        "weight": "70% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 1,
+        "name": "Жим лёжа",
+        "sets": 4,
+        "repetitions": 6,
+        "weight": "65% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 1,
+        "name": "Тяга штанги в наклоне",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "60% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 1,
+        "name": "Гиперэкстензия",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "с собственным весом",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 2,
+        "name": "Становая тяга",
+        "sets": 4,
+        "repetitions": 6,
+        "weight": "70% от 1RM",
+        "rest_after_set": 120
+      },
+      {
+        "training_day": 2,
+        "name": "Жим узким хватом",
+        "sets": 4,
+        "repetitions": 6,
+        "weight": "65% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 2,
+        "name": "Подтягивания",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "с собственным весом",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 2,
+        "name": "Гиперэкстензия",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "с собственным весом",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 3,
+        "name": "Приседания со штангой",
+        "sets": 4,
+        "repetitions": 5,
+        "weight": "75% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 3,
+        "name": "Жим лёжа",
+        "sets": 4,
+        "repetitions": 5,
+        "weight": "70% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 3,
+        "name": "Тяга штанги в наклоне",
+        "sets": 3,
+        "repetitions": 6,
+        "weight": "65% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 3,
+        "name": "Гиперэкстензия",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "с собственным весом",
+        "rest_after_set": 60
+      },
+      {
+        "training_day": 4,
+        "name": "Становая тяга",
+        "sets": 4,
+        "repetitions": 5,
+        "weight": "75% от 1RM",
+        "rest_after_set": 120
+      },
+      {
+        "training_day": 4,
+        "name": "Жим узким хватом",
+        "sets": 4,
+        "repetitions": 5,
+        "weight": "70% от 1RM",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 4,
+        "name": "Подтягивания",
+        "sets": 3,
+        "repetitions": 8,
+        "weight": "с собственным весом",
+        "rest_after_set": 90
+      },
+      {
+        "training_day": 4,
+        "name": "Гиперэкстензия",
+        "sets": 3,
+        "repetitions": 12,
+        "weight": "с собственным весом",
+        "rest_after_set": 60
+      }
+    ]
+  }

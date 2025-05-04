@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:only_testosterone/screens/generate_program_screen.dart';
 import 'package:only_testosterone/screens/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _screens = [
     //здеся можно экраны писать отдельные(осталось их тока реализовать)
     ProfileScreen(),
-    Center(child: Text('Новая программа')),
+    TrainingProgramGeneratorScreen(),
     Center(child: Text('Мои программы')),
     Center(child: Text('Калькулятор БЖУ')),
   ];

@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:only_testosterone/services/user_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:only_testosterone/models/user_model.dart';
+import 'package:only_testosterone/services/user_services.dart';
+import 'package:only_testosterone/services/workout_program_services.dart';
 
 class TrainingProgramGeneratorScreen extends StatefulWidget {
   @override
@@ -12,7 +17,25 @@ class _TrainingProgramGeneratorScreenState
   int _duration = 2;
   int _daysPerWeek = 3;
 
+  UserModel? _user;
+
   final List<String> _programTypes = ['Пауэрлифтинг', 'Бодибилдинг', 'Кроссфит'];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUser();
+  }
+
+  Future<void> _loadUser() async {
+    final int? userId = await UserPreferences.getUserId();
+    if (userId != null) {
+      final user = await UserServices.getUserById(userId);
+      setState(() {
+        _user = user;
+      });
+    }
+  }
 
   void _generateProgram() {
     if (_selectedType == null) {
@@ -22,9 +45,40 @@ class _TrainingProgramGeneratorScreenState
       return;
     }
 
-    // Здесь ты вызываешь логику генерации (например, чтение JSON из assets)
-    print('Тип: $_selectedType, Длительность: $_duration недель, '
-        '$_daysPerWeek тренировки в неделю');
+    if (_user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Пользователь не загружен')),
+      );
+      return;
+    }
+
+    final gender = _user?.gender;
+
+    final level = _user?.levelOfTraining;
+
+    if (gender == null || level == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Данные пользователя неполные')),
+      );
+      return;
+    }
+    String path = WorkoutProgramServices.generateWorkoutProgramPath(
+      gender: gender,
+      level: level,
+      weeks: _duration,
+      daysPerWeek: _daysPerWeek,
+    );
+
+    print('Путь к файлу программы: $path');
+
+    if (_user!.id != null) {
+      WorkoutProgramServices.addWorkoutProgram(path, _user!.id!);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Ошибка: не удалось получить ID пользователя')),
+      );
+    }
+    // здесь ты можешь вызвать метод загрузки программы из JSON и добавления в БД
   }
 
   @override
@@ -38,7 +92,6 @@ class _TrainingProgramGeneratorScreenState
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Выбор типа программы
             DropdownButtonFormField<String>(
               decoration: InputDecoration(
                 labelText: 'Тип программы',
@@ -58,8 +111,6 @@ class _TrainingProgramGeneratorScreenState
               },
             ),
             SizedBox(height: 16),
-
-            // Слайдер длительности
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -78,8 +129,6 @@ class _TrainingProgramGeneratorScreenState
                 ),
               ],
             ),
-
-            // Кол-во тренировок в неделю
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -98,10 +147,7 @@ class _TrainingProgramGeneratorScreenState
                 ),
               ],
             ),
-
             SizedBox(height: 20),
-
-            // Кнопка генерации
             ElevatedButton.icon(
               icon: Icon(Icons.fitness_center),
               label: Text("Сгенерировать программу"),

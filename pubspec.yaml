@@ -71,6 +71,53 @@ flutter:
   assets:
   - assets/logo.svg
   - .env
+  - assets/programs/p/м/0/2 недели/2/TrainingProgram.json
+  - assets/programs/p/м/0/2 недели/3/TrainingProgram.json
+  - assets/programs/p/м/0/2 недели/4/TrainingProgram.json
+  - assets/programs/p/м/0/4 недели/2/TrainingProgram.json
+  - assets/programs/p/м/0/4 недели/3/TrainingProgram.json
+  - assets/programs/p/м/0/4 недели/4/TrainingProgram.json
+  - assets/programs/p/м/0/6 недели/2/TrainingProgram.json
+  - assets/programs/p/м/0/6 недели/3/TrainingProgram.json
+  - assets/programs/p/м/0/6 недели/4/TrainingProgram.json
+  - assets/programs/p/м/1/2 недели/2/TrainingProgram.json
+  - assets/programs/p/м/1/2 недели/3/TrainingProgram.json
+  - assets/programs/p/м/1/2 недели/4/TrainingProgram.json
+  - assets/programs/p/м/1/4 недели/2/TrainingProgram.json
+  - assets/programs/p/м/1/4 недели/3/TrainingProgram.json
+  - assets/programs/p/м/1/4 недели/4/TrainingProgram.json
+  - assets/programs/p/м/1/6 недели/2/TrainingProgram.json
+  - assets/programs/p/м/1/6 недели/3/TrainingProgram.json
+  - assets/programs/p/м/1/6 недели/4/TrainingProgram.json
+  - assets/programs/p/м/2/2 недели/2/TrainingProgram.json
+  - assets/programs/p/м/2/2 недели/3/TrainingProgram.json
+  - assets/programs/p/м/2/2 недели/4/TrainingProgram.json
+  - assets/programs/p/м/2/4 недели/3/TrainingProgram.json
+  - assets/programs/p/м/2/4 недели/4/TrainingProgram.json
+  - assets/programs/p/м/2/6 недели/2/TrainingProgram.json
+  - assets/programs/p/м/2/6 недели/3/TrainingProgram.json
+  - assets/programs/p/м/2/6 недели/4/TrainingProgram.json
+  - assets/programs/p/ж/0/2 недели/2/TrainingProgram.json
+  - assets/programs/p/ж/0/2 недели/3/TrainingProgram.json
+  - assets/programs/p/ж/0/2 недели/4/TrainingProgram.json
+  - assets/programs/p/ж/0/4 недели/2/TrainingProgram.json
+  - assets/programs/p/ж/0/4 недели/3/TrainingProgram.json
+  - assets/programs/p/ж/0/4 недели/4/TrainingProgram.json
+  - assets/programs/p/ж/0/6 недели/2/TrainingProgram.json
+  - assets/programs/p/ж/0/6 недели/3/TrainingProgram.json
+  - assets/programs/p/ж/0/6 недели/4/TrainingProgram.json
+  - assets/programs/p/ж/1/2 недели/2/TrainingProgram.json
+  - assets/programs/p/ж/1/2 недели/3/TrainingProgram.json
+  - assets/programs/p/ж/1/2 недели/4/TrainingProgram.json
+  - assets/programs/p/ж/1/4 недели/2/TrainingProgram.json
+  - assets/programs/p/ж/1/4 недели/3/TrainingProgram.json
+  - assets/programs/p/ж/1/4 недели/4/TrainingProgram.json
+  - assets/programs/p/ж/1/6 недели/2/TrainingProgram.json
+  - assets/programs/p/ж/1/6 недели/3/TrainingProgram.json
+  - assets/programs/p/ж/1/6 недели/4/TrainingProgram.json
+
+
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

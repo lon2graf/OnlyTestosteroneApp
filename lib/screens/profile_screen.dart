@@ -119,7 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _buildInfoCard(
             Icons.wc,
             "Пол",
-            _user!.gender == 'м' ? 'Мужской' : _user!.gender == 'ж' ? 'Женский' : '—',
+            _user!.gender == 'М' ? 'Мужской' : _user!.gender == 'Ж' ? 'Женский' : '—',
           ),
           _buildOneRMCard(),
           _buildInfoCard(Icons.military_tech, "Уровень подготовки", _user!.levelOfTraining?.toString() ?? '—'),

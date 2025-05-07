@@ -16,6 +16,7 @@ class _TrainingProgramGeneratorScreenState
   String? _selectedType;
   int _duration = 2;
   int _daysPerWeek = 3;
+  bool _isLoading = false;
 
   UserModel? _user;
 
@@ -37,7 +38,7 @@ class _TrainingProgramGeneratorScreenState
     }
   }
 
-  void _generateProgram() {
+  Future<void> _generateProgram() async {
     if (_selectedType == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Пожалуйста, выберите тип программы')),
@@ -52,8 +53,7 @@ class _TrainingProgramGeneratorScreenState
       return;
     }
 
-    final gender = _user?.gender;
-
+    final gender = _user?.gender?.toLowerCase();
     final level = _user?.levelOfTraining;
 
     if (gender == null || level == null) {
@@ -62,23 +62,41 @@ class _TrainingProgramGeneratorScreenState
       );
       return;
     }
-    String path = WorkoutProgramServices.generateWorkoutProgramPath(
-      gender: gender,
-      level: level,
-      weeks: _duration,
-      daysPerWeek: _daysPerWeek,
-    );
 
-    print('Путь к файлу программы: $path');
+    setState(() {
+      _isLoading = true;
+    });
 
-    if (_user!.id != null) {
-      WorkoutProgramServices.addWorkoutProgram(path, _user!.id!);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Ошибка: не удалось получить ID пользователя')),
+    try {
+      String path = WorkoutProgramServices.generateWorkoutProgramPath(
+        gender: gender,
+        level: level,
+        weeks: _duration,
+        daysPerWeek: _daysPerWeek,
       );
+
+      print('Путь к файлу программы: $path');
+
+      if (_user!.id != null) {
+        await WorkoutProgramServices.addWorkoutProgram(path, _user!.id!);
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Программа успешно сгенерирована!')),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Ошибка: не удалось получить ID пользователя')),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Ошибка при генерации: $e')),
+      );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
     }
-    // здесь ты можешь вызвать метод загрузки программы из JSON и добавления в БД
   }
 
   @override
@@ -110,6 +128,7 @@ class _TrainingProgramGeneratorScreenState
                 });
               },
             ),
+
             SizedBox(height: 16),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,14 +167,17 @@ class _TrainingProgramGeneratorScreenState
               ],
             ),
             SizedBox(height: 20),
-            ElevatedButton.icon(
+            _isLoading
+                ? CircularProgressIndicator()
+                : ElevatedButton.icon(
               icon: Icon(Icons.fitness_center),
               label: Text("Сгенерировать программу"),
-              onPressed: _generateProgram,
+              onPressed: _isLoading ? null : _generateProgram,
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(double.infinity, 50),
               ),
             ),
+
           ],
         ),
       ),

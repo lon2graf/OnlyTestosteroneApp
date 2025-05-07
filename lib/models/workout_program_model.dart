@@ -19,22 +19,22 @@ class WorkoutProgramModel{
   factory WorkoutProgramModel.fromJson(Map<String, dynamic> json) {
     return WorkoutProgramModel(
       id: json['id'],  // id будет получен из ответа сервера
-      userId: json['user_id'],
-      type: json['type'],
-      name: json['name'],
-      daysPerWeek: json['days_per_week'],
-      duration: json['duration'],
+      userId: json['User_id'],
+      type: json['Type'],
+      name: json['Name'],
+      daysPerWeek: json['Days_Per_Week'],
+      duration: json['Duration'],
     );
   }
 
   // Метод для преобразования объекта в JSON
   Map<String, dynamic> toJson() {
     return {
-      'user_id': userId,
-      'type': type,
-      'name': name,
-      'days_per_week': daysPerWeek,
-      'duration': duration,
+      'User_id': userId,
+      'Type': type,
+      'Name': name,
+      'Days_Per_Week': daysPerWeek,
+      'Duration': duration,
     };
   }
 }

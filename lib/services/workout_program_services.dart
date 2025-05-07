@@ -74,4 +74,28 @@ class WorkoutProgramServices {
 
     return path;
   }
+
+  static Future<List<WorkoutProgramModel>> getProgramsByUserId(
+    int userId,
+  ) async {
+    final _supClient = Supabase.instance.client;
+
+    try {
+      final response = await _supClient
+          .from('Workout_programs')
+          .select()
+          .eq('User_id', userId);
+
+      if (response != null && response is List) {
+        return response
+            .map((json) => WorkoutProgramModel.fromJson(json))
+            .toList();
+      } else {
+        return [];
+      }
+    } catch (e) {
+      print('Ошибка при получении данных - $e');
+      return [];
+    }
+  }
 }

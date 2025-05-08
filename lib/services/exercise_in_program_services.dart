@@ -22,4 +22,17 @@ class ExerciseInProgramServices{
     //final response = await _supClient.from().insert()
 
   }
+
+  static Future<List<ExerciseInProgramModel>> fetchExercisesByProgramId(int programId) async {
+    final _supClient = Supabase.instance.client;
+    final response = await _supClient
+        .from('Exercises_in_Program')
+        .select()
+        .eq('Program_Id', programId);
+
+    return (response as List)
+        .map((e) => ExerciseInProgramModel.fromJson(e))
+        .toList();
+  }
+
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:only_testosterone/models/workout_program_model.dart';
 import 'package:only_testosterone/services/user_preferences.dart';
 import 'package:only_testosterone/services/workout_program_services.dart';
+import 'package:only_testosterone/screens/exercises_program_screen.dart';
 
 class UserProgramsScreen extends StatefulWidget {
   @override
@@ -90,7 +91,12 @@ class _UserProgramsScreenState extends State<UserProgramsScreen> {
                       ),
                       trailing: Icon(Icons.arrow_forward_ios_rounded, size: 20),
                       onTap: () {
-                        // TODO: переход к подробному экрану программы
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => WorkoutProgramDetailScreen(programId: program.id!),
+                          ),
+                        );
                       },
                     ),
                   );

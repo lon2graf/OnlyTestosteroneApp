@@ -23,26 +23,26 @@ class ExerciseInProgramModel{
   factory ExerciseInProgramModel.fromJson(Map<String, dynamic> json) {
     return ExerciseInProgramModel(
       id: json['id'],
-      programId: json['program_id'],
-      exerciseName: json['exercise_name'],
-      trainingDay: json['training_day'],
-      sets: json['sets'],
-      reps: json['reps'],
-      weight: json['weight'],
-      restAfterSet: json['rest_after_set'],
+      programId: json['Program_Id'],
+      exerciseName: json['Exercise_name'],
+      trainingDay: json['Training_day'],
+      sets: json['Sets'],
+      reps: json['Reps'],
+      weight: json['Weight'],
+      restAfterSet: json['Rest_after_set'],
     );
   }
 
   // Метод для преобразования объекта в JSON
   Map<String, dynamic> toJson() {
     return {
-      'program_id': programId,
-      'exercise_name': exerciseName,
+      'Program_Id': programId,
+      'Exercise_name': exerciseName,
       'training_day': trainingDay,
-      'sets': sets,
-      'reps': reps,
-      'weight': weight,
-      'rest_after_set': restAfterSet,
+      'Sets': sets,
+      'Reps': reps,
+      'Weight': weight,
+      'Rest_after_set': restAfterSet,
     };
   }
 }

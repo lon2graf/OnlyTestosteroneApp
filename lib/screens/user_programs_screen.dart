@@ -38,70 +38,88 @@ class _UserProgramsScreenState extends State<UserProgramsScreen> {
     }
   }
 
+  String _getTypeLabel(String? type) {
+    switch (type?.toLowerCase()) {
+      case 'p':
+      case 'пауэрлифтинг':
+        return 'Пауэрлифтинг';
+      case 'b':
+        return 'Бодибилдинг';
+      case 'c':
+        return 'Кроссфит';
+      default:
+        return 'Неизвестно';
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final titleStyle = TextStyle(
+      color: Colors.black,
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+    );
+    final subtitleStyle = TextStyle(color: Colors.black54, fontSize: 14);
+
     return Scaffold(
-      appBar: AppBar(title: Text('Мои программы')),
-      body:
-          _isLoading
-              ? Center(child: CircularProgressIndicator())
-              : _programs.isEmpty
-              ? Center(child: Text('Нет сохранённых программ'))
-              : ListView.builder(
-                itemCount: _programs.length,
-                itemBuilder: (context, index) {
-                  final program = _programs[index];
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child:
+            _isLoading
+                ? Center(child: CircularProgressIndicator(color: Colors.black))
+                : _programs.isEmpty
+                ? Center(
+                  child: Text(
+                    'Нет сохранённых программ',
+                    style: TextStyle(color: Colors.black54),
+                  ),
+                )
+                : ListView.builder(
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                  itemCount: _programs.length,
+                  itemBuilder: (context, index) {
+                    final program = _programs[index];
 
-                  // Расшифровка типа
-                  String typeLabel;
-                  switch (program.type) {
-                    case 'p':
-                      typeLabel = 'Пауэрлифтинг';
-                      break;
-                    case 'пауэрлифтинг':
-                      typeLabel = 'Пауэрлифтинг';
-                      break;
-                    case 'b':
-                      typeLabel = 'Бодибилдинг';
-                      break;
-                    case 'c':
-                      typeLabel = 'Кроссфит';
-                      break;
-                    default:
-                      typeLabel = 'Неизвестно';
-                  }
-
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    elevation: 3,
-                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: ListTile(
-                      contentPadding: EdgeInsets.all(16),
-                      title: Text(
-                        typeLabel,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                    return Container(
+                      margin: EdgeInsets.only(bottom: 12),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[100],
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.black12),
+                      ),
+                      child: ListTile(
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 12,
                         ),
+                        title: Text(
+                          _getTypeLabel(program.type),
+                          style: titleStyle,
+                        ),
+                        subtitle: Text(
+                          '${program.duration} недель, ${program.daysPerWeek} раз в неделю',
+                          style: subtitleStyle,
+                        ),
+                        trailing: Icon(
+                          Icons.chevron_right,
+                          color: Colors.black,
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (context) => WorkoutProgramDetailScreen(
+                                    programId: program.id!,
+                                  ),
+                            ),
+                          );
+                        },
                       ),
-                      subtitle: Text(
-                        '${program.duration} нед., ${program.daysPerWeek} трен./нед.',
-                        style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-                      ),
-                      trailing: Icon(Icons.arrow_forward_ios_rounded, size: 20),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => WorkoutProgramDetailScreen(programId: program.id!),
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                },
-              ),
+                    );
+                  },
+                ),
+      ),
     );
   }
 }

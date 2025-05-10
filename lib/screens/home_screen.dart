@@ -36,10 +36,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
         title: const Text('OnlyTestosterone'),
         centerTitle: true,
       ),
-      //Drawer - боковая панель
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -68,11 +69,12 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey[400],
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Профиль'),
           BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Новая'),

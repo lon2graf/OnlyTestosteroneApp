@@ -45,28 +45,66 @@ class _WorkoutProgramDetailScreenState extends State<WorkoutProgramDetailScreen>
 
   @override
   Widget build(BuildContext context) {
+    final titleStyle = TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold);
+    final subtitleStyle = TextStyle(color: Colors.black87, fontSize: 14);
+
     return Scaffold(
-      appBar: AppBar(title: Text('Программа тренировок')),
-      body: _isLoading
-          ? Center(child: CircularProgressIndicator())
-          : _groupedExercises.isEmpty
-          ? Center(child: Text('Упражнения не найдены'))
-          : ListView(
-        children: _groupedExercises.entries.map((entry) {
-          final trainingDay = entry.key;
-          final exercises = entry.value;
-          return ExpansionTile(
-            title: Text('День $trainingDay'),
-            children: exercises.map((ex) {
-              return ListTile(
-                title: Text(ex.exerciseName),
-                subtitle: Text(
-                  '${ex.sets}x${ex.reps} • ${ex.weight} кг • отдых ${ex.restAfterSet} сек',
-                ),
-              );
-            }).toList(),
-          );
-        }).toList(),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        title: Text('Программа тренировок'),
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        child: _isLoading
+            ? Center(child: CircularProgressIndicator(color: Colors.black))
+            : _groupedExercises.isEmpty
+            ? Center(child: Text('Упражнения не найдены', style: subtitleStyle))
+            : ListView(
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          children: _groupedExercises.entries.map((entry) {
+            final trainingDay = entry.key;
+            final exercises = entry.value;
+
+            return Container(
+              margin: EdgeInsets.only(bottom: 16),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black12),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: ExpansionTile(
+                tilePadding: EdgeInsets.symmetric(horizontal: 16),
+                collapsedIconColor: Colors.black,
+                iconColor: Colors.black,
+                title: Text('День $trainingDay', style: titleStyle),
+                childrenPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                children: exercises.map((ex) {
+                  return Container(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(color: Colors.black12),
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(ex.exerciseName, style: titleStyle, textAlign: TextAlign.center),
+                        SizedBox(height: 4),
+                        Text(
+                          '${ex.sets} x ${ex.reps}  •  ${ex.weight} кг  •  отдых ${ex.restAfterSet} сек',
+                          style: subtitleStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

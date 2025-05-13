@@ -1,15 +1,16 @@
+/// Модель пользователя, отражающая структуру таблицы 'Users' в Supabase
 class UserModel {
-  final int? id;
-  final String login;
-  final String name;
-  final String password;
-  final double? weight;
-  final String? gender; // может быть null
-  final double? benchPress; // может быть null
-  final double? deadLift; // может быть null
-  final double? squat; // может быть null
-  final int? levelOfTraining; // может быть null
-  final double? dailyCalories; // может быть null
+  final int? id; // ID пользователя (nullable, т.к. может не быть при регистрации)
+  final String login; // Логин (уникальный)
+  final String name; // Имя пользователя
+  final String password; // Пароль
+  final double? weight; // Вес пользователя
+  final String? gender; // Пол: 'М' или 'Ж'
+  final double? benchPress; // 1ПМ в жиме лёжа
+  final double? deadLift; // 1ПМ в тяге
+  final double? squat; // 1ПМ в приседе
+  final int? levelOfTraining; // Уровень подготовки: 0 — новичок, 1 — средний, 2 — продвинутый
+  final double? dailyCalories; // Рассчитанная суточная калорийность
 
   UserModel({
     this.id,
@@ -25,29 +26,30 @@ class UserModel {
     this.dailyCalories,
   });
 
-  Map<String, dynamic> toJson(){
-    final map =
-      {
-        'id':id,
-        'login': login,
-        'name' : name,
-        'password' : password,
-        'weight' : weight,
-        'gender' : gender,
-        'Rm_benchPress' : benchPress,
-        'Rm_deadLift' : deadLift,
-        'Rm_squat' : squat,
-        'levelOfTraining' : levelOfTraining,
-        'daily_calories' : dailyCalories
-      };
-    return map;
+  /// Преобразование модели в JSON для отправки в Supabase
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'login': login,
+      'name': name,
+      'password': password,
+      'weight': weight,
+      'gender': gender,
+      'Rm_benchPress': benchPress,
+      'Rm_deadLift': deadLift,
+      'Rm_squat': squat,
+      'levelOfTraining': levelOfTraining,
+      'daily_calories': dailyCalories,
+    };
   }
 
+  /// Фабричный метод для создания модели из JSON, полученного от Supabase
   factory UserModel.fromJson(Map<String, dynamic> json) {
+    // Приватный метод для безопасного приведения типов к double
     double? _toDouble(dynamic value) {
       if (value == null) return null;
-      if (value is int) return value.toDouble();
       if (value is double) return value;
+      if (value is int) return value.toDouble();
       return double.tryParse(value.toString());
     }
 
@@ -65,6 +67,4 @@ class UserModel {
       dailyCalories: _toDouble(json['daily_calories']),
     );
   }
-
-
 }

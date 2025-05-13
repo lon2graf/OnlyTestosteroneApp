@@ -3,6 +3,7 @@ import 'package:only_testosterone/models/user_model.dart';
 import 'package:only_testosterone/services/user_preferences.dart';
 import 'package:only_testosterone/services/user_services.dart';
 import 'package:only_testosterone/screens/login_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -83,13 +84,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _logout() async {
     await UserPreferences.clearUserId();
     if (!mounted) return;
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const LoginScreen()),
-    );
+    context.push('/login');
   }
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     if (_isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -98,49 +99,79 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return Center(child: Text(_errorMessage!));
     }
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.only(top: 24, bottom: 60),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-            child: Text(
-              "Добро пожаловать!",
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+    return SafeArea(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.only(top: 24, bottom: 60),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: screenWidth < 600 ? double.infinity : 600,
           ),
-          _buildInfoCard(Icons.person, "Имя", _user!.name ?? '—'),
-          _buildInfoCard(Icons.account_circle, "Логин", _user!.login ?? '—'),
-          _buildInfoCard(Icons.monitor_weight, "Вес", "${_user!.weight ?? '—'} кг"),
-          _buildInfoCard(
-            Icons.wc,
-            "Пол",
-            _user!.gender == 'М' ? 'Мужской' : _user!.gender == 'Ж' ? 'Женский' : '—',
-          ),
-          _buildOneRMCard(),
-          _buildInfoCard(Icons.military_tech, "Уровень подготовки", _user!.levelOfTraining?.toString() ?? '—'),
-          _buildInfoCard(Icons.local_fire_department, "Калории в день", "${_user!.dailyCalories?.toStringAsFixed(0) ?? '—'} ккал"),
-          const SizedBox(height: 24),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 8,
                 ),
-                minimumSize: const Size.fromHeight(50),
+                child: Text(
+                  "Добро пожаловать!",
+                  style: TextStyle(
+                    fontSize: screenWidth < 350 ? 24 : 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-              onPressed: _logout,
-              child: const Text("Выйти"),
-            ),
+              _buildInfoCard(Icons.person, "Имя", _user!.name ?? '—'),
+              _buildInfoCard(
+                Icons.account_circle,
+                "Логин",
+                _user!.login ?? '—',
+              ),
+              _buildInfoCard(
+                Icons.monitor_weight,
+                "Вес",
+                "${_user!.weight ?? '—'} кг",
+              ),
+              _buildInfoCard(
+                Icons.wc,
+                "Пол",
+                _user!.gender == 'М'
+                    ? 'Мужской'
+                    : _user!.gender == 'Ж'
+                    ? 'Женский'
+                    : '—',
+              ),
+              _buildOneRMCard(),
+              _buildInfoCard(
+                Icons.military_tech,
+                "Уровень подготовки",
+                _user!.levelOfTraining?.toString() ?? '—',
+              ),
+              _buildInfoCard(
+                Icons.local_fire_department,
+                "Калории в день",
+                "${_user!.dailyCalories?.toStringAsFixed(0) ?? '—'} ккал",
+              ),
+              const SizedBox(height: 24),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    minimumSize: const Size.fromHeight(50),
+                  ),
+                  onPressed: _logout,
+                  child: const Text("Выйти"),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

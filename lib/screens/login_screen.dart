@@ -5,13 +5,26 @@ import 'package:only_testosterone/services/user_services.dart';
 import 'package:only_testosterone/widgets/custom_text_field.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController loginController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    loginController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController loginController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -30,15 +43,12 @@ class LoginScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(height: 20),
-
-                        // Логотип
                         SvgPicture.asset(
                           'assets/logo.svg',
-                          height: size.height * 0.25, // адаптивный размер
+                          height: size.height * 0.25,
                         ),
                         const SizedBox(height: 20),
-
-                        Text(
+                        const Text(
                           'Авторизация',
                           style: TextStyle(
                             fontSize: 28,
@@ -47,15 +57,11 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 40),
-
-                        // Логин
                         CustomTextField(
                           hintText: "Логин",
                           controller: loginController,
                         ),
                         const SizedBox(height: 16),
-
-                        // Пароль
                         CustomTextField(
                           hintText: "Пароль",
                           controller: passwordController,
@@ -63,35 +69,27 @@ class LoginScreen extends StatelessWidget {
                           keyboardType: TextInputType.visiblePassword,
                         ),
                         const SizedBox(height: 10),
-
                         TextButton(
                           onPressed: () {
                             context.push('/register');
                           },
                           child: const Text('Нет аккаунта? Зарегайся!'),
                         ),
-
                         const Spacer(),
-
-                        // Кнопка Войти
                         ElevatedButton(
                           onPressed: () async {
-                            int? userId =
-                                await UserServices.loginUserWithString(
-                                  loginController.text,
-                                  passwordController.text,
-                                );
+                            int? userId = await UserServices.loginUserWithString(
+                              loginController.text,
+                              passwordController.text,
+                            );
 
                             if (userId != null) {
                               await UserPreferences.saveUserId(userId);
-                              print('айдишник $userId');
                               context.go('/home');
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text(
-                                    'Неправильный логин или пароль',
-                                  ),
+                                  content: Text('Неправильный логин или пароль'),
                                   backgroundColor: Colors.red,
                                 ),
                               );
@@ -124,3 +122,4 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+

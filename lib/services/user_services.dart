@@ -10,11 +10,12 @@ class UserServices {
   static Future<int?> registerUser(UserModel user) async {
     try {
       // Проверка, занят ли логин
-      final existingUser = await _supClient
-          .from('Users')
-          .select()
-          .eq('login', user.login)
-          .maybeSingle();
+      final existingUser =
+          await _supClient
+              .from('Users')
+              .select()
+              .eq('login', user.login)
+              .maybeSingle();
 
       if (existingUser != null) {
         throw Exception('Пользователь с таким логином уже существует');
@@ -25,10 +26,11 @@ class UserServices {
       userData.remove('id');
 
       // Вставка пользователя в таблицу Users
-      final List<dynamic> insertResponse = await _supClient
-          .from('Users')
-          .insert(userData)
-          .select(); // возвращает вставленную запись
+      final List<dynamic> insertResponse =
+          await _supClient
+              .from('Users')
+              .insert(userData)
+              .select(); // возвращает вставленную запись
 
       if (insertResponse.isNotEmpty) {
         final insertedUser = insertResponse.first as Map<String, dynamic>;
@@ -42,16 +44,34 @@ class UserServices {
     }
   }
 
+  static Future<bool> updateTrainingLevel({
+    required int userId,
+    required int level,
+  }) async {
+    try {
+      final response = await _supClient
+          .from('Users')
+          .update({'levelOfTraining': level})
+          .eq('id', userId);
+
+      return response.error == null;
+    } catch (e) {
+      print("Ошибка при обновлении уровня подготовки: $e");
+      return false;
+    }
+  }
+
   /// Авторизация пользователя по модели UserModel
   /// Возвращает true, если пользователь найден, иначе false
   static Future<bool> loginUserWithModel(UserModel user) async {
     try {
-      final response = await _supClient
-          .from('Users')
-          .select()
-          .eq('login', user.login)
-          .eq('password', user.password)
-          .maybeSingle();
+      final response =
+          await _supClient
+              .from('Users')
+              .select()
+              .eq('login', user.login)
+              .eq('password', user.password)
+              .maybeSingle();
 
       return response != null;
     } catch (e) {
@@ -64,12 +84,13 @@ class UserServices {
   /// Возвращает ID пользователя, если вход успешен, иначе null
   static Future<int?> loginUserWithString(String login, String password) async {
     try {
-      final response = await _supClient
-          .from('Users')
-          .select()
-          .eq('login', login)
-          .eq('password', password)
-          .maybeSingle();
+      final response =
+          await _supClient
+              .from('Users')
+              .select()
+              .eq('login', login)
+              .eq('password', password)
+              .maybeSingle();
 
       return response?['id'];
     } catch (e) {
@@ -82,11 +103,12 @@ class UserServices {
   /// Возвращает true, если логин уже используется
   static Future<bool> isLoginTaker(String login) async {
     try {
-      final response = await _supClient
-          .from('Users')
-          .select()
-          .eq('login', login)
-          .maybeSingle();
+      final response =
+          await _supClient
+              .from('Users')
+              .select()
+              .eq('login', login)
+              .maybeSingle();
 
       return response != null;
     } catch (e) {
@@ -99,11 +121,8 @@ class UserServices {
   /// Возвращает объект UserModel или null
   static Future<UserModel?> getUserById(int id) async {
     try {
-      final response = await _supClient
-          .from('Users')
-          .select()
-          .eq('id', id)
-          .single();
+      final response =
+          await _supClient.from('Users').select().eq('id', id).single();
 
       return UserModel.fromJson(response);
     } catch (e) {
@@ -122,15 +141,18 @@ class UserServices {
     required double deadliftMax,
   }) {
     if (gender == 'М') {
-      final isNovice = (squatMax >= 0.6 * weight && squatMax < 1.1 * weight) &&
+      final isNovice =
+          (squatMax >= 0.6 * weight && squatMax < 1.1 * weight) &&
           (benchPressMax >= 0.5 * weight && benchPressMax < 0.8 * weight) &&
           (deadliftMax >= 0.6 * weight && deadliftMax < 1.1 * weight);
 
-      final isIntermediate = (squatMax >= 1.1 * weight && squatMax < 1.6 * weight) &&
+      final isIntermediate =
+          (squatMax >= 1.1 * weight && squatMax < 1.6 * weight) &&
           (benchPressMax >= 0.8 * weight && benchPressMax < 1.1 * weight) &&
           (deadliftMax >= 1.1 * weight && deadliftMax < 1.6 * weight);
 
-      final isAdvanced = squatMax >= 1.6 * weight &&
+      final isAdvanced =
+          squatMax >= 1.6 * weight &&
           benchPressMax >= 1.1 * weight &&
           deadliftMax >= 1.6 * weight;
 
@@ -140,15 +162,18 @@ class UserServices {
     }
 
     if (gender == 'Ж') {
-      final isNovice = (squatMax >= 0.5 * weight && squatMax < 0.9 * weight) &&
+      final isNovice =
+          (squatMax >= 0.5 * weight && squatMax < 0.9 * weight) &&
           (benchPressMax >= 0.4 * weight && benchPressMax < 0.7 * weight) &&
           (deadliftMax >= 0.5 * weight && deadliftMax < 0.9 * weight);
 
-      final isIntermediate = (squatMax >= 0.9 * weight && squatMax < 1.3 * weight) &&
+      final isIntermediate =
+          (squatMax >= 0.9 * weight && squatMax < 1.3 * weight) &&
           (benchPressMax >= 0.7 * weight && benchPressMax < 0.9 * weight) &&
           (deadliftMax >= 0.9 * weight && deadliftMax < 1.3 * weight);
 
-      final isAdvanced = squatMax >= 1.3 * weight &&
+      final isAdvanced =
+          squatMax >= 1.3 * weight &&
           benchPressMax >= 0.9 * weight &&
           deadliftMax >= 1.3 * weight;
 
@@ -159,6 +184,27 @@ class UserServices {
 
     return 0; // По умолчанию — новичок
   }
+
+  static Future<bool> updateOneRepMaxes({
+    required int userId,
+    double? benchPress,
+    double? squat,
+    double? deadLift,
+  }) async {
+    try {
+      final responce = await _supClient
+          .from('Users')
+          .update({
+            'Rm_benchPress': benchPress,
+            'Rm_squat': squat,
+            'Rm_deadLift': deadLift,
+          })
+          .eq('id', userId);
+
+      return true; // если дошло до сюда — успех
+    } catch (e) {
+      print("Ошибка при обновлении 1ПМ: $e");
+      return false;
+    }
+  }
 }
-
-

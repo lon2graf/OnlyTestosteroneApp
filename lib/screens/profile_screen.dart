@@ -23,6 +23,97 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _loadUser();
   }
 
+  void _showEditOneRMDialog() {
+    final benchController = TextEditingController(
+      text: _user?.benchPress?.toString() ?? '',
+    );
+    final squatController = TextEditingController(
+      text: _user?.squat?.toString() ?? '',
+    );
+    final deadLiftController = TextEditingController(
+      text: _user?.deadLift?.toString() ?? '',
+    );
+
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            title: const Text('Изменить результаты 1ПМ'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: benchController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: 'Жим лёжа (кг)'),
+                ),
+                TextField(
+                  controller: squatController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: 'Присед (кг)'),
+                ),
+                TextField(
+                  controller: deadLiftController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: 'Становая (кг)'),
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Отмена'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final userId = await UserPreferences.getUserId();
+                  if (userId == null) return;
+
+                  final bench = double.tryParse(benchController.text);
+                  final squat = double.tryParse(squatController.text);
+                  final deadlift = double.tryParse(deadLiftController.text);
+
+                  final success = await UserServices.updateOneRepMaxes(
+                    userId: userId,
+                    benchPress: bench,
+                    squat: squat,
+                    deadLift: deadlift,
+                  );
+
+                  if (success) {
+                    // 💡 Пересчитываем уровень подготовки
+                    final newLevel = UserServices.determineTrainingLevel(
+                      gender: _user!.gender,
+                      weight: _user!.weight!,
+                      squatMax: squat ?? 0,
+                      benchPressMax: bench ?? 0,
+                      deadliftMax: deadlift ?? 0,
+                    );
+
+                    // 💾 Обновляем уровень в базе
+                    await UserServices.updateTrainingLevel(
+                      userId: userId,
+                      level: newLevel,
+                    );
+
+                    // Закрываем диалог и обновляем UI
+                    Navigator.pop(context);
+                    _loadUser();
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Ошибка при обновлении 1ПМ'),
+                      ),
+                    );
+                  }
+                },
+                child: const Text('Сохранить'),
+              ),
+            ],
+          ),
+    );
+  }
+
   Future<void> _loadUser() async {
     try {
       final userId = await UserPreferences.getUserId();
@@ -153,6 +244,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 "Калории в день",
                 "${_user!.dailyCalories?.toStringAsFixed(0) ?? '—'} ккал",
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepPurple,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    minimumSize: const Size.fromHeight(50),
+                  ),
+                  onPressed: _showEditOneRMDialog,
+                  icon: const Icon(Icons.edit),
+                  label: const Text("Изменить рекорды"),
+                ),
+              ),
+
               const SizedBox(height: 24),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),

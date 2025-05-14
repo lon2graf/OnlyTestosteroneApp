@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:only_testosterone/screens/calculator_screen.dart';
 import 'package:only_testosterone/screens/generate_program_screen.dart';
 import 'package:only_testosterone/screens/profile_screen.dart';
 import 'package:only_testosterone/screens/user_programs_screen.dart';
@@ -18,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ProfileScreen(),
     TrainingProgramGeneratorScreen(),
     UserProgramsScreen(),
-    Center(child: Text('Калькулятор БЖУ')),
+    CalculatorScreen(),
   ];
 
   void _onItemTapped(int index) {

@@ -25,14 +25,34 @@ class ExerciseInProgramServices{
 
   static Future<List<ExerciseInProgramModel>> fetchExercisesByProgramId(int programId) async {
     final _supClient = Supabase.instance.client;
-    final response = await _supClient
-        .from('Exercises_in_Program')
-        .select()
-        .eq('Program_Id', programId);
 
-    return (response as List)
-        .map((e) => ExerciseInProgramModel.fromJson(e))
-        .toList();
+    try {
+      print('[DEBUG] Получаем упражнения для Program_Id: $programId');
+
+      final response = await _supClient
+          .from('Exercises_in_Program')
+          .select()
+          .eq('Program_Id', programId);
+
+      print('[DEBUG] Ответ от Supabase: $response');
+
+      if (response is List) {
+        final result = response.map((e) {
+          print('[DEBUG] Преобразуем упражнение: $e');
+          return ExerciseInProgramModel.fromJson(e);
+        }).toList();
+
+        print('[DEBUG] Всего упражнений получено: ${result.length}');
+        return result;
+      } else {
+        print('❌ Полученный ответ не является списком!');
+        return [];
+      }
+    } catch (e, stackTrace) {
+      print('❌ Ошибка при получении упражнений: $e');
+      print('🧵 StackTrace: $stackTrace');
+      return [];
+    }
   }
 
 }

@@ -10,43 +10,57 @@ class WorkoutProgramServices {
   static Future<void> addWorkoutProgram(String jsonPath, int userId) async {
     try {
       final _supClient = Supabase.instance.client;
+
+      print('[DEBUG] Загружаем JSON по пути: $jsonPath');
+
       // 1. Загрузить JSON-файл
       final jsonString = await rootBundle.loadString(jsonPath);
       final jsonData = json.decode(jsonString);
+      print('[DEBUG] JSON успешно загружен: $jsonData');
 
       // 2. Сформировать WorkoutProgramModel
-      final programResponse =
-          await _supClient
-              .from('Workout_programs')
-              .insert({
-                'User_id': userId,
-                'Type': jsonData['type'],
-                'Name': jsonData['name'],
-                'Days_Per_Week': jsonData['number_of_days_per_week'],
-                'Duration': jsonData['duration'],
-              })
-              .select()
-              .single();
+      print('[DEBUG] Отправляем программу в Supabase...');
+      final programResponse = await _supClient
+          .from('Workout_programs')
+          .insert({
+        'User_id': userId,
+        'Type': jsonData['type'],
+        'Name': jsonData['name'],
+        'Days_Per_Week': jsonData['number_of_days_per_week'],
+        'Duration': jsonData['duration'],
+      })
+          .select()
+          .single();
+
+      print('[DEBUG] Программа добавлена, ответ Supabase: $programResponse');
 
       final int programId = programResponse['id'];
+      print('[DEBUG] Новый programId: $programId');
 
       // 3. Добавить упражнения
       final List exercises = jsonData['exercises'];
-      for (final ex in exercises) {
+      print('[DEBUG] Найдено упражнений: ${exercises.length}');
+      for (int i = 0; i < exercises.length; i++) {
+        final ex = exercises[i];
+        print('[DEBUG] Добавляем упражнение #$i: $ex');
+
         await _supClient.from('Exercises_in_Program').insert({
           'Program_Id': programId,
-          'Exercise_name': ex['name'],
+          'Exercise_name': ex['name'] ?? 'Без имени',
           'Training_day': ex['training_day'].toString(),
           'Sets': ex['sets'].toString(),
           'Reps': ex['repetitions'].toString(),
-          'Weight': ex['weight'],
+          'Weight': ex['weight'] ?? 0,
           'Rest_after_set': ex['rest_after_set'].toString(),
         });
+
+        print('[DEBUG] Упражнение #$i добавлено успешно.');
       }
 
-      print('Программа успешно добавлена в базу данных.');
-    } catch (e) {
-      print('Ошибка при добавлении программы: $e');
+      print('✅ Программа успешно добавлена в базу данных.');
+    } catch (e, stackTrace) {
+      print('❌ Ошибка при добавлении программы: $e');
+      print('🧵 StackTrace: $stackTrace');
     }
   }
 

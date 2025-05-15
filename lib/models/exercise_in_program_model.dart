@@ -28,7 +28,7 @@ class ExerciseInProgramModel{
       trainingDay: json['Training_day'],
       sets: json['Sets'],
       reps: json['Reps'],
-      weight: json['Weight'],
+      weight: json['Weight']?.toString() ?? '',
       restAfterSet: json['Rest_after_set'],
     );
   }

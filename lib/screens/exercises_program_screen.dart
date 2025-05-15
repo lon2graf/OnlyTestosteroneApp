@@ -64,6 +64,10 @@ class _WorkoutProgramDetailScreenState extends State<WorkoutProgramDetailScreen>
             : ListView(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           children: _groupedExercises.entries.map((entry) {
+            print('Группировка по дням:');
+            _groupedExercises.forEach((key, value) {
+              print('День $key: ${value.length} упражнений');
+            });
             final trainingDay = entry.key;
             final exercises = entry.value;
 

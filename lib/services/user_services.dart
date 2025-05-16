@@ -2,8 +2,12 @@ import 'package:only_testosterone/models/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class UserServices {
-  static final _supClient = Supabase.instance.client;
+  static SupabaseClient _supClient = Supabase.instance.client;
 
+  //метод для теста
+  static void setClientForTest(SupabaseClient client) {
+    _supClient = client;
+  }
   /// Регистрирует нового пользователя
   /// 1. Проверяет, занят ли логин
   /// 2. Если логин свободен, добавляет нового пользователя в БД
